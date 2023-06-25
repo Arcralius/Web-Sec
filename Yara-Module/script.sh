@@ -16,7 +16,6 @@ while IFS= read -r fileline; do
 
 	command_output=$(yara rules.yar $fileline -w -m)
 
-	commandescape=$(printf "%q" "$command_output")
 	count=$(yara rules.yar $escape -c -w)
 
 	echo ""
@@ -51,7 +50,7 @@ while IFS= read -r fileline; do
 	
 			# Run additional regex matching or perform other operations
 			# ...
-		done <<< "$commandescape"
+		done <<< "$command_output"
 
 	fi
 
