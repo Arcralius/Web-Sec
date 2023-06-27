@@ -519,4 +519,6 @@ include "./rules/nodeffmpeg_0_0_1.yara"
 include "./rules/node_fabric_1_7_18.yara"
 include "./rules/proxy_js_0_11_3.yara"
 include "./rules/jquery_js_3_2_2.yara"
+include "./rules/detect_discord_token_stealer.yara"
+include "./rules/detect_environment_variable_stealer.yara"
 
