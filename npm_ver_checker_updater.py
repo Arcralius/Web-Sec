@@ -21,18 +21,23 @@ def npm_check_run_updates(directory):
         update_output = ""
 
     except subprocess.CalledProcessError as error:
-        # If outdated packages are detected python will throw an error
+        # If outdated packages are detected, prompt the user for confirmation
         print("Outdated npm packages:")
         print(error.output.decode('utf-8') + "\n\n")
 
-        # Only run 'npm update' if there are outdated packages
-        try:
-            print("updating outdated packages...")
-            update_output = subprocess.check_output('npm update', shell=True, cwd=directory).decode('utf-8')
-            print("Done!")
-        except subprocess.CalledProcessError as update_error:
-            print("Error occurred during 'npm update':")
-            print(update_error.output.decode('utf-8'))
+        # Prompt the user for confirmation
+        choice = input("Do you want to install updates? (y/n): ")
+        if choice.lower() == 'y':
+            try:
+                print("Updating outdated packages...")
+                update_output = subprocess.check_output('npm update', shell=True, cwd=directory).decode('utf-8')
+                print("Update completed successfully!")
+            except subprocess.CalledProcessError as update_error:
+                print("Error occurred during 'npm update':")
+                print(update_error.output.decode('utf-8'))
+                update_output = ""
+        else:
+            print("Update cancelled by the user.")
             update_output = ""
 
     return update_output
