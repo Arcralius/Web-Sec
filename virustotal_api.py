@@ -61,8 +61,8 @@ def get_report(report_url):
         report_status = x.json()['data']['attributes']['status']
         if report_status == "completed":
             return x.json()
-        #print(f"Report is {report_status}. Sleeping for 30 secs")
-        time.sleep(30)
+        print(f"Report is {report_status}...")
+        time.sleep(15)
 
 
 def print_json(report, path):
@@ -93,8 +93,8 @@ def main():
 
     args = parser.parse_args()
     if args.filename:
-        #x = get_report(upload_file(args.filename))
-        x = get_report(r"https://www.virustotal.com/api/v3/analyses/YmE3MzZlZWEwMDg0MjNiOWYxODEyMTU3YzMxMTk4NWE6MTY4NDgzNDUzMg==")
+        x = get_report(upload_file(args.filename))
+        #x = get_report(r"https://www.virustotal.com/api/v3/analyses/YmE3MzZlZWEwMDg0MjNiOWYxODEyMTU3YzMxMTk4NWE6MTY4NDgzNDUzMg==")
         print_stats(x)
         if args.json:
             print_json(x, args.json)
