@@ -5,8 +5,14 @@ import os
 import tarfile
 import shutil
 import tempfile
+import subprocess
 
 REGISTRY = "https://registry.npmjs.org/"
+# Get the directory of the currently running script
+script_directory = os.path.dirname(os.path.abspath(__file__))
+scan_results_directory = os.path.join(script_directory, "SCAN_RESULTS")
+if not os.path.exists(scan_results_directory):
+    os.makedirs(scan_results_directory)
 
 
 def check_npm_install_syntax(command):
@@ -88,32 +94,40 @@ def extract_npm_package(package_path):
     :param package_path: path to tarball package
     :return: temp dir with extracted contents
     """
-    # Create a temporary directory to extract the package
-    temp_dir = tempfile.mkdtemp()
-
     try:
         # Extract the package contents
+        package_dir = os.path.dirname(package_path)
         with tarfile.open(package_path, 'r:gz') as tar:
-            tar.extractall(path=temp_dir)
-
-        return temp_dir
+            tar.extractall(path=package_dir)
     except Exception as e:
         print(f"Failed to extract npm package: {str(e)}")
         return None
 
 
-def scan_directory_for_viruses(directory):
-    # Implement your antivirus scanning logic here
-    # Iterate through the files in the directory and scan each file for viruses
-    # You can use a third-party antivirus library or command-line scanner for this task
+def create_temp_dir():
+    """
+    Create temp file and return path to temp file
+    """
+    temp_dir = tempfile.mkdtemp()
+    return temp_dir
 
-    # Example logic:
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            file_path = os.path.join(root, file)
-            # Perform virus scanning on the file
-            # Replace this with your actual antivirus scanning code
-            print(f"Scanning file: {file_path}")
+
+def scan_directory_for_viruses_yara(directory):
+    """
+    Scan directories recursively with yara_scan.py
+    """
+    yara_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "yara_scan.py")
+    process = subprocess.Popen(['python3', yara_path, directory])
+    process.wait()
+
+
+def scan_directory_for_viruses_ai(directory):
+    """
+        Scan directories recursively with yara_scan.py
+    """
+    ai_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ai_scanner.py")
+    process = subprocess.Popen(['python3', ai_path, directory])
+    process.wait()
 
 
 def cleanup_temp_directory(directory):
@@ -130,17 +144,22 @@ package_name, package_version = package
 # Fetch package information
 tarball_url, package_version = fetch_package(package_name, package_version)
 if tarball_url:
-    # Set destination path for downloaded package
-    destination_path = f"{package_name}-{package_version}.tgz"
-    # Download the package
+    # Set destination path and temporary folder for downloaded package
+    extracted_dir = create_temp_dir()
+    destination_path = f"{extracted_dir}/{package_name}-{package_version}.tgz"
+    # Download the package in temporary folder
     if download_package(tarball_url, destination_path):
         print(f"Successfully downloaded package {package_name}@{package_version}")
-        extracted_dir = extract_npm_package(destination_path)
+        extract_npm_package(destination_path)
+        shutil.move(destination_path, destination_path)
         if extracted_dir:
             try:
-                scan_directory_for_viruses(extracted_dir)
+                scan_directory_for_viruses_yara(extracted_dir)
+                scan_directory_for_viruses_ai(extracted_dir)
             finally:
                 cleanup_temp_directory(extracted_dir)
+                print("SCRIPT FINISHED")
+                print(f"SCAN RESULTS CAN BE FOUND AT {scan_results_directory}")
         else:
             raise Exception("Package extraction failed")
     else:

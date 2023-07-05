@@ -1,0 +1,3 @@
+SCAN REPORT FOR AI SCAN
+
+The File lodash.min.js is classified as malicious.
