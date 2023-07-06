@@ -130,6 +130,15 @@ def scan_directory_for_viruses_ai(directory):
     process.wait()
 
 
+def scan_directory_for_viruses_vt(directory):
+    """
+        Scan directories recursively with virustotal_apiv2.py
+    """
+    vt_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "virustotal_apiv2.py")
+    process = subprocess.Popen(['python3', vt_path, directory])
+    process.wait()
+
+
 def cleanup_temp_directory(directory):
     """
     Clean up temp dir
@@ -156,6 +165,7 @@ if tarball_url:
             try:
                 scan_directory_for_viruses_yara(extracted_dir)
                 scan_directory_for_viruses_ai(extracted_dir)
+                scan_directory_for_viruses_vt(extracted_dir)
             finally:
                 cleanup_temp_directory(extracted_dir)
                 print("SCRIPT FINISHED")

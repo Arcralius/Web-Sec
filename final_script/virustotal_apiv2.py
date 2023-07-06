@@ -48,7 +48,7 @@ def get_scan_report(api_key, resource, file_name, file_hash):
             total = result['total']
             print(f'Scan completed. Detection ratio: {positives}/{total}')
 
-            # Append scan report to VT_output.txt
+            # Append scan report to SCAN_RESULTS/VT_output.txt
             with open('SCAN_RESULTS/VT_output.txt', 'a') as output_file:
                 output_file.write(f'File Name: {file_name}\n')
                 output_file.write(f'File Hash: {file_hash}\n')
@@ -63,12 +63,17 @@ def get_scan_report(api_key, resource, file_name, file_hash):
         print(f'Error retrieving scan report: {result["verbose_msg"]}')
 
 
-def scan_directory(api_key, directory):
+def scan_directory(api_key, directory, max_files):
+    file_count = 0
+
     with open('SCAN_RESULTS/VT_output.txt', 'w') as output_file:
-        output_file.write('SCAN REPORT FOR VT SCAN\n\n')
+        output_file.write('VirusTotal Scan Report\n\n')
 
     for root, dirs, files in os.walk(directory):
         for file in files:
+            if file_count >= max_files:
+                return
+
             file_path = os.path.join(root, file)
             file_name = os.path.basename(file_path)
             file_hash = calculate_file_hash(file_path)
@@ -76,18 +81,22 @@ def scan_directory(api_key, directory):
             resource = scan_file(api_key, file_path)
             if resource:
                 get_scan_report(api_key, resource, file_name, file_hash)
+                file_count += 1
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Scan JavaScript files in a directory using VirusTotal API')
     parser.add_argument('directory', help='Directory path to scan recursively')
+    parser.add_argument('--max-files', type=int, default=3, help='Maximum number of filesto scan (default: 4)')
 
     args = parser.parse_args()
     directory = args.directory
+    max_files = args.max_files
 
     api_key = read_api_key()
-    
+
+    # Create SCAN_RESULTS directory if it doesn't exist
     results_dir = os.path.join(os.getcwd(), 'SCAN_RESULTS')
     os.makedirs(results_dir, exist_ok=True)
 
-    scan_directory(api_key, directory)
+    scan_directory(api_key, directory, max_files)
