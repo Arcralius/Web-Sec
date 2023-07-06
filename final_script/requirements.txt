@@ -1,3 +1,4 @@
 Requests==2.31.0
 yara==1.7.7
 yara_python==4.0.5
+scikit-learn==1.2.2
