@@ -43,7 +43,6 @@ def unzip_file(zip_file_path, destination_path):
 def delete_file(file_path):
     try:
         os.remove(file_path)
-        print(f"The file '{file_path}' has been deleted.")
     except OSError as e:
         print(f"Error: Failed to delete the file '{file_path}'. {e}")
 
@@ -60,7 +59,7 @@ def remove_line_from_file(file_path, line_number):
     with open(file_path, 'w') as file:
         file.writelines(lines)
 
-    print(f"Line {line_number} has been removed from the file '{file_path}'.")
+    print(f"Log file has been updated.")
 
 def update_first_line(file_path, new_content):
     with open(file_path, 'r') as file:
@@ -71,7 +70,7 @@ def update_first_line(file_path, new_content):
     with open(file_path, 'w') as file:
         file.writelines(lines)
 
-    print(f"The first line of '{file_path}' has been updated.")
+    print(f"Log count updated.")
 
 # Example usage
 file_path = 'test.conf'  # Replace with the path to your file
@@ -82,15 +81,25 @@ if lines > 1:
     x = 2
     while x != lines + 1:
         line_contents = split(get_line_by_index(file_path, x))
-        print(line_contents)
+
+        print("Malware Log: ")
+
         print_file_contents(line_contents[2])
+
+        print("")
+
         user_response = ask_yes_no_prompt(get_last_string_before_slash(line_contents[0]))
+
+        print("")
 
         if user_response:
             unzip_file(line_contents[0], line_contents[1])
             delete_file(line_contents[0])
         else:
             delete_file(line_contents[0])
+            print(f"Module " + get_last_string_before_slash(line_contents[0]) + " has been removed.")
+
+        print()
 
         remove_line_from_file(file_path, x)
         update_first_line(file_path, str(int(lines) - 2))
