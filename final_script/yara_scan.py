@@ -41,6 +41,7 @@ if yara_rules_file is None:
 # Compile the YARA rules
 rules = yara.compile(filepath=yara_rules_file)
 
+
 # Function to scan a file using YARA rules
 def scan_file(file_path):
     try:
@@ -60,6 +61,7 @@ def scan_file(file_path):
             print(f"No match found in: {file_name}")
     except Exception as e:
         print(f"Error scanning file: {file_path}\n{e}")
+
 
 # Function to process files in a directory using threads
 def process_directory(directory):

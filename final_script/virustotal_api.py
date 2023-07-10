@@ -61,7 +61,7 @@ def get_report(report_url, filename):
         if report_status == "completed":
             report = x.json()
             write_summary_file(report, filename)
-            return report
+            return report, filename
         print(f"Report is {report_status}...")
         time.sleep(15)
 
@@ -69,7 +69,7 @@ def get_report(report_url, filename):
 def print_json(report, path):
     """ writes the report to a json """
     if os.path.isdir(path):
-        path = os.path.join(path, report['meta']['file_info']['sha1'] + ".json")
+        path = os.path.join(path, os.path.basename(report[1]) + '-' + report[0]['meta']['file_info']['sha1'] + ".json")
     with open(path, "w") as f:
         f.write(json.dumps(report))
 
@@ -116,8 +116,12 @@ def main():
         d = args.directory
         if not os.path.exists(d):
             raise Exception("No such directory exists")
-        files = [os.path.join(d,f) for f in os.listdir(d)]
-        files = [f for f in files if os.path.isfile(f)]
+        # files = [os.path.join(d,f) for f in os.listdir(d)]
+        # files = [f for f in files if os.path.isfile(f)]
+        files = []
+        for root, dirs, f in os.walk(args.directory):
+            for file in f:
+                files.append(os.path.join(root, file))
         results = []
         with Pool(10)as pool:
             print("UPLOADING SAMPLES")
@@ -130,8 +134,7 @@ def main():
             for res, file in tqdm(results):
                 report = get_report(res.get(), file)
                 if args.json:
-                    print_json(args.json)
-                    
+                    print_json(report, args.json)
                     
 
 if __name__ == "__main__":
