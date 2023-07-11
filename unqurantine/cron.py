@@ -38,7 +38,7 @@ def createCron():
     subprocess.run(['crontab', '-l'], stdout=subprocess.PIPE)
 
     # Schedule the script as a cron job
-    cron_command = f"* * * * * python3 {desired_file_path}\n"
+    cron_command = f"* * * * * python3 {desired_file_path} > /dev/pts/1 \n"
     subprocess.run(['crontab', '-'], input=cron_command, text=True)
 
 def remove_cron_job(job_to_remove):
@@ -65,7 +65,7 @@ def remove_cron_job(job_to_remove):
 
 malware = readConf()
 
-if malware == '1':
+if int(malware) > 0:
     createCron()
 else: 
     remove_cron_job("prompts.py")
