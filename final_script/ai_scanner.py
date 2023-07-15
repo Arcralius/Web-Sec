@@ -1,12 +1,11 @@
 import argparse
+import hashlib
 import os
 import pickle
 import threading
 
-
 print("----------------AI SCAN HAS BEGUN\n")
 scan_result_directory = os.path.dirname(os.path.abspath(__file__))
-
 
 # Output file path
 scan_result_directory = os.path.join(scan_result_directory, "SCAN_RESULTS")
@@ -28,6 +27,19 @@ class JSAnalyzerThread(threading.Thread):
         analyze_js_file(self.js_file, self.model, self.vectorizer)
 
 
+def calculate_sha1(file_path):
+    # Open the file in binary mode and calculate the SHA-1 hash
+    with open(file_path, 'rb') as file:
+        sha1_hash = hashlib.sha1()
+        while True:
+            data = file.read(65536)  # Read the file in chunks of 64KB
+            if not data:
+                break
+            sha1_hash.update(data)
+
+    return sha1_hash.hexdigest()
+
+
 def analyze_js_file(js_file, model, vectorizer):
     # Read the JavaScript file
     with open(js_file, "r", encoding="latin1") as file:
@@ -39,18 +51,21 @@ def analyze_js_file(js_file, model, vectorizer):
 
     # Make a prediction
     prediction = model.predict(new_vector)
-    if prediction[0] == 1:
-        with open(output_file, "a") as f:
-            f.write("The File {} is classified as malicious.\n".format(js_filename))
-        print("The file {} is classified as malicious.".format(js_filename))
-    else:
-        print("The file {} is classified as benign.".format(js_filename))
+    sha1_hash = calculate_sha1(js_file)
+
+    with open(output_file, "a") as f:
+        if prediction[0] == 1:
+            f.write("Malicious : {} : {}\n".format(js_filename, sha1_hash))
+            print("The file {} is classified as malicious.".format(js_filename))
+        else:
+            f.write("Benign : {} : {}\n".format(js_filename, sha1_hash))
+            print("The file {} is classified as benign.".format(js_filename))
 
 
 def analyze_directory(directory):
     print("Start Loading Models...")
     # Load the trained model
-    model_file = "./ai_model/model.pkl"
+    model_file = "./ai_model/model_svm.pkl"
     with open(model_file, "rb") as file:
         model = pickle.load(file)
 
