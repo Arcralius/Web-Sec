@@ -5,6 +5,8 @@ import json
 import shutil
 
 VT_SCORE = "./quarantined_files/VT-score.json"
+YARA_SCORE = "./quarantined_files/yara-score.json"
+AI_SCORE = "./quarantined_files/AI-score.json"
 
 
 def calculate_sha1(file_path):
@@ -63,25 +65,36 @@ def quarantine_file(file_path, quarantine_folder):
 
 def quarantine_files(dir_path, quarantine_folder):
     counter = 0
-    with open(VT_SCORE) as file:
-        json_data = json.load(file)
+    with open(VT_SCORE) as vt_file, open(YARA_SCORE) as yara_file, open(AI_SCORE) as ai_file:
+        vt_scores = json.load(vt_file)
+        yara_scores = json.load(yara_file)
+        ai_scores = json.load(ai_file)
+
     for root, dirs, files in os.walk(dir_path):
         for file in files:
             file_path = os.path.join(root, file)
             file_name = os.path.basename(file_path)
-            file_name = file_name + "-" +calculate_sha1(file_path)
-            for key, value in json_data.items():
-                if file_name == key and value > 0.65:
-                    counter = counter+1
-                    quarantine_file(file_path, quarantine_folder)
+            sha1_hash = calculate_sha1(file_path)
+            file_identifier = f"{file_name}-{sha1_hash}"
+
+            vt_score = vt_scores.get(file_identifier, 0.0)
+            yara_score = yara_scores.get(file_identifier, 0.0)
+            ai_score = ai_scores.get(file_identifier, 0.0)
+
+            if vt_score > 0.65 or yara_score == 1.0 or ai_score == 1.0:
+                quarantine_file(file_path, quarantine_folder)
+                counter += 1
+
     if counter > 0:
-        with open(os.path.join(quarantine_folder, "quarantine.conf"), "r+") as file:
+        quarantine_config = os.path.join(quarantine_folder, "quarantine.conf")
+        with open(quarantine_config, "r+") as file:
             file_content = file.read()
             file.seek(0, 0)
             file.write(str(counter) + "\n" + file_content)
 
 
-dir_to_quarantine = "../Yara-Module"
+
+dir_to_quarantine = "/home/kali/Downloads/test_package"
 file_to_quarantine = "../Yara-Module/malware1.js"
 quarantine_folder = "../final_script/quarantined_files/"
 
