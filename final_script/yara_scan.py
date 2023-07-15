@@ -1,3 +1,4 @@
+import hashlib
 import os
 import yara
 import threading
@@ -42,42 +43,45 @@ if yara_rules_file is None:
 rules = yara.compile(filepath=yara_rules_file)
 
 
+# Function to calculate the SHA1 hash of a file
+def calculate_hash(file_path):
+    sha1_hash = hashlib.sha1()
+    with open(file_path, "rb") as file:
+        for chunk in iter(lambda: file.read(4096), b""):
+            sha1_hash.update(chunk)
+    return sha1_hash.hexdigest()
+
 # Function to scan a file using YARA rules
 def scan_file(file_path):
     try:
         matches = rules.match(filepath=file_path)
-        file_name = file_path.split("/")[-1]
-        if matches:
-            with open(output_file, "a") as f:
-                print(f"Match found in: {file_name}")
-                f.write(f"Match found in: {file_name}\n")
+        file_name = os.path.basename(file_path)
+        file_hash = calculate_hash(file_path)
+        with open(output_file, "a") as f:
+            if matches:
+                print(f"Match found in: {file_name} : [{file_hash}]")
+                f.write(f"Match found in: {file_name} : [{file_hash}]\n")
                 for match in matches:
                     print(f"Rule: {match.rule}")
                     f.write(f"Rule: {match.rule}\n")
                     if 'description' in match.meta:
                         print(f"Description: {match.meta['description']}")
-                        f.write(f"Description: {match.meta['description']}\n\n\n")
-        else:
-            print(f"No match found in: {file_name}")
+                        f.write(f"Description: {match.meta['description']}\n\n")
+            else:
+                print(f"No match found in: {file_name} : [{file_hash}]")
+                f.write(f"No match found in: {file_name} : [{file_hash}]\n\n")
     except Exception as e:
         print(f"Error scanning file: {file_path}\n{e}")
 
-
-# Function to process files in a directory using threads
-def process_directory(directory):
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            file_path = os.path.join(root, file)
-            scan_file(file_path)
 
 # Create a list of threads
 threads = []
 
 # Recursively scan the directory using threads
 for root, dirs, files in os.walk(scan_directory):
-    for directory in dirs:
-        directory_path = os.path.join(root, directory)
-        thread = threading.Thread(target=process_directory, args=(directory_path,))
+    for file in files:
+        file_path = os.path.join(root, file)
+        thread = threading.Thread(target=scan_file, args=(file_path,))
         threads.append(thread)
         thread.start()
 
