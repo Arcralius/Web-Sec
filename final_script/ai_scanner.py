@@ -11,20 +11,31 @@ scan_result_directory = os.path.dirname(os.path.abspath(__file__))
 scan_result_directory = os.path.join(scan_result_directory, "SCAN_RESULTS")
 if not os.path.exists(scan_result_directory):
     os.makedirs(scan_result_directory)
-output_file = os.path.join(scan_result_directory, "AI_output.txt")
-with open(output_file, "w") as f:
-    f.write("SCAN REPORT FOR AI SCAN\n\n")
+svm_output_file = os.path.join(scan_result_directory, "svm_output.txt")
+with open(svm_output_file, "w") as f:
+    f.write("SCAN REPORT FOR SVM SCAN\n\n")
+xgb_output_file = os.path.join(scan_result_directory, "xgb_output.txt")
+with open(xgb_output_file, "w") as f:
+    f.write("SCAN REPORT FOR XGB SCAN\n\n")
+nb_output_file = os.path.join(scan_result_directory, "nb_output.txt")
+with open(nb_output_file, "w") as f:
+    f.write("SCAN REPORT FOR NB SCAN\n\n")
+    nb_output_file = os.path.join(scan_result_directory, "nb_output.txt")
+rf_output_file = os.path.join(scan_result_directory, "rf_output.txt")
+with open(rf_output_file, "w") as f:
+    f.write("SCAN REPORT FOR RF SCAN\n\n")
 
 
 class JSAnalyzerThread(threading.Thread):
-    def __init__(self, js_file, model, vectorizer):
+    def __init__(self, js_file, model, vectorizer, model_name):
         threading.Thread.__init__(self)
         self.js_file = js_file
         self.model = model
         self.vectorizer = vectorizer
+        self.model_name = model_name
 
     def run(self):
-        analyze_js_file(self.js_file, self.model, self.vectorizer)
+        analyze_js_file(self.js_file, self.model, self.vectorizer, self.model_name)
 
 
 def calculate_sha1(file_path):
@@ -40,7 +51,7 @@ def calculate_sha1(file_path):
     return sha1_hash.hexdigest()
 
 
-def analyze_js_file(js_file, model, vectorizer):
+def analyze_js_file(js_file, model, vectorizer, model_name):
     # Read the JavaScript file
     with open(js_file, "r", encoding="latin1") as file:
         code = file.read()
@@ -53,6 +64,7 @@ def analyze_js_file(js_file, model, vectorizer):
     prediction = model.predict(new_vector)
     sha1_hash = calculate_sha1(js_file)
 
+    output_file = os.path.join(scan_result_directory, model_name+"_output.txt")
     with open(output_file, "a") as f:
         if prediction[0] == 1:
             f.write("Malicious : {} : {}\n".format(js_filename, sha1_hash))
@@ -64,10 +76,25 @@ def analyze_js_file(js_file, model, vectorizer):
 
 def analyze_directory(directory):
     print("Start Loading Models...")
-    # Load the trained model
-    model_file = "./ai_model/model_svm.pkl"
-    with open(model_file, "rb") as file:
-        model = pickle.load(file)
+    # Load the SVM model
+    svm_model_file = "./ai_model/model_svm.pkl"
+    with open(svm_model_file, "rb") as file:
+        svm_model = pickle.load(file)
+
+    # Load the XGB model
+    xgb_model_file = "./ai_model/model_xgb.pkl"
+    with open(xgb_model_file, "rb") as file:
+        xgb_model = pickle.load(file)
+
+    # Load the NB model
+    nb_model_file = "./ai_model/model_nb.pkl"
+    with open(nb_model_file, "rb") as file:
+        nb_model = pickle.load(file)
+
+    # Load the RF model
+    rf_model_file = "./ai_model/model_rf.pkl"
+    with open(rf_model_file, "rb") as file:
+        rf_model = pickle.load(file)
 
     # Load or recreate the vectorizer
     vectorizer_file = "./ai_model/vectorizer.pkl"
@@ -76,14 +103,50 @@ def analyze_directory(directory):
     print("Done Loading")
 
     threads = []
+    print("-------------Starting SVM model------------")
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(".js"):
                 js_file = os.path.join(root, file)
-                thread = JSAnalyzerThread(js_file, model, vectorizer)
+                thread = JSAnalyzerThread(js_file, svm_model, vectorizer, "svm")
                 thread.start()
                 threads.append(thread)
-
+    # Wait for all threads to complete
+    for thread in threads:
+        thread.join()
+    threads = []
+    print("-------------Starting XGB model------------")
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".js"):
+                js_file = os.path.join(root, file)
+                thread = JSAnalyzerThread(js_file, xgb_model, vectorizer, "xgb")
+                thread.start()
+                threads.append(thread)
+    # Wait for all threads to complete
+    for thread in threads:
+        thread.join()
+    threads = []
+    print("-------------Starting NB model------------")
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".js"):
+                js_file = os.path.join(root, file)
+                thread = JSAnalyzerThread(js_file, nb_model, vectorizer, "nb")
+                thread.start()
+                threads.append(thread)
+    # Wait for all threads to complete
+    for thread in threads:
+        thread.join()
+    threads = []
+    print("-------------Starting RF model------------")
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".js"):
+                js_file = os.path.join(root, file)
+                thread = JSAnalyzerThread(js_file, rf_model, vectorizer, "rf")
+                thread.start()
+                threads.append(thread)
     # Wait for all threads to complete
     for thread in threads:
         thread.join()
@@ -95,4 +158,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     analyze_directory(args.directory)
-    print("----------------AI SCAN IS COMPLETED\n\n\n\n\n")
+    print("----------------AI SCAN IS COMPLETED\n\n")

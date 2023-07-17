@@ -2,11 +2,14 @@ import os
 import hashlib
 import zipfile
 import json
-import shutil
 
 VT_SCORE = "./quarantined_files/VT-score.json"
 YARA_SCORE = "./quarantined_files/yara-score.json"
 AI_SCORE = "./quarantined_files/AI-score.json"
+SVM_SCORE = "./quarantined_files/SVM-score.json"
+XGB_SCORE = "./quarantined_files/XGB-score.json"
+NB_SCORE = "./quarantined_files/NB-score.json"
+RF_SCORE = "./quarantined_files/RF-score.json"
 
 
 def calculate_sha1(file_path):
@@ -65,10 +68,14 @@ def quarantine_file(file_path, quarantine_folder):
 
 def quarantine_files(dir_path, quarantine_folder):
     counter = 0
-    with open(VT_SCORE) as vt_file, open(YARA_SCORE) as yara_file, open(AI_SCORE) as ai_file:
+    with open(VT_SCORE) as vt_file, open(YARA_SCORE) as yara_file, open(SVM_SCORE) as svm_file, open(XGB_SCORE) as xgb_file\
+            , open(NB_SCORE) as nb_file, open(RF_SCORE) as rf_file:
         vt_scores = json.load(vt_file)
         yara_scores = json.load(yara_file)
-        ai_scores = json.load(ai_file)
+        svm_scores = json.load(svm_file)
+        xgb_scores = json.load(xgb_file)
+        nb_scores = json.load(nb_file)
+        rf_scores = json.load(rf_file)
 
     for root, dirs, files in os.walk(dir_path):
         for file in files:
@@ -79,9 +86,14 @@ def quarantine_files(dir_path, quarantine_folder):
 
             vt_score = vt_scores.get(file_identifier, 0.0)
             yara_score = yara_scores.get(file_identifier, 0.0)
-            ai_score = ai_scores.get(file_identifier, 0.0)
+            svm_score = svm_scores.get(file_identifier, 0.0)
+            xgb_score = xgb_scores.get(file_identifier, 0.0)
+            nb_score = nb_scores.get(file_identifier, 0.0)
+            rf_score = rf_scores.get(file_identifier, 0.0)
+            ai_score = svm_score + xgb_score + nb_score + rf_score
 
-            if vt_score > 0.65 or yara_score == 1.0 or ai_score == 1.0:
+
+            if vt_score > 0.65 or yara_score == 1.0 or ai_score >= 2.0:
                 quarantine_file(file_path, quarantine_folder)
                 counter += 1
 
@@ -94,8 +106,7 @@ def quarantine_files(dir_path, quarantine_folder):
 
 
 
-dir_to_quarantine = "/home/kali/Downloads/test_package"
-file_to_quarantine = "../Yara-Module/malware1.js"
+dir_to_quarantine = "../Yara-Module"
 quarantine_folder = "../final_script/quarantined_files/"
 
 hashes = get_file_hashes(dir_to_quarantine)

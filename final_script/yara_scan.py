@@ -89,4 +89,4 @@ for root, dirs, files in os.walk(scan_directory):
 for thread in threads:
     thread.join()
 
-print("----------------YARA SCAN IS COMPLETED\n\n\n\n\n")
+print("----------------YARA SCAN IS COMPLETED\n\n")

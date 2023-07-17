@@ -25,7 +25,7 @@ def generate_ai_scores(input_file, output_file):
 
 
 # Example usage
-input_path = "../final_script/SCAN_RESULTS/AI_output.txt"
-output_path = "quarantined_files/AI-score.json"
+input_path = "../final_script/SCAN_RESULTS/rf_output.txt"
+output_path = "quarantined_files/RF-score.json"
 
 generate_ai_scores(input_path, output_path)

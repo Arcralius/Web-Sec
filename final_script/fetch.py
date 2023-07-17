@@ -10,15 +10,31 @@ import hashlib
 import json
 import zipfile
 
-REGISTRY = "https://registry.npmjs.org/"
+# CONSTANTS
+REGISTRY = "http://localhost:4873/"
 # Get the directory of the currently running script
 script_directory = os.path.dirname(os.path.abspath(__file__))
 scan_results_directory = os.path.join(script_directory, "SCAN_RESULTS")
 if not os.path.exists(scan_results_directory):
     os.makedirs(scan_results_directory)
-QUARANTINE_FOLDER = "./quarantined_files"
+QUARANTINE_FOLDER = "./quarantined_files/"
 VT_SCORE = "./SCAN_RESULTS/VT-score.json"
 VT_OUTPUT = "./SCAN_RESULTS/VT_output/"
+if not os.path.exists(VT_OUTPUT):
+    os.makedirs(VT_OUTPUT)
+SCORES_DIRECTORY = os.path.join(script_directory, "SCAN_SCORES")
+if not os.path.exists(SCORES_DIRECTORY):
+    os.makedirs(SCORES_DIRECTORY)
+VT_SCORE = os.path.join(SCORES_DIRECTORY, "VT-score.json")
+YARA_SCORE = os.path.join(SCORES_DIRECTORY, "yara-score.json")
+AI_SCORE = os.path.join(SCORES_DIRECTORY, "AI-score.json")
+SVM_SCORE = os.path.join(SCORES_DIRECTORY, "SVM-score.json")
+XGB_SCORE = os.path.join(SCORES_DIRECTORY, "XGB-score.json")
+NB_SCORE = os.path.join(SCORES_DIRECTORY, "NB-score.json")
+RF_SCORE = os.path.join(SCORES_DIRECTORY, "RF-score.json")
+
+
+# Initialize folders and files needed
 
 
 def check_npm_install_syntax(command):
@@ -103,6 +119,56 @@ def scan_directory_vt(directory, config_file):
             json.dump(dict_of_scores, f, indent=4)
 
 
+def generate_yara_scores(input_file, output_file):
+    dict_of_scores = {}
+
+    try:
+        with open(input_file, 'r') as f:
+            lines = f.readlines()
+
+            for line in lines:
+                if line.startswith('Match found in:'):
+                    line_parts = line.strip().split('Match found in: ')
+                    filename = line_parts[1].split(' : ')[0]
+                    file_hash = line_parts[1].split(' : ')[1].strip('[]')
+                    dict_of_scores[f"{filename}-{file_hash}"] = 1.0
+                elif line.startswith('No match found in:'):
+                    line_parts = line.strip().split('No match found in: ')
+                    filename = line_parts[1].split(' : ')[0]
+                    file_hash = line_parts[1].split(' : ')[1].strip('[]')
+                    dict_of_scores[f"{filename}-{file_hash}"] = 0.0
+
+        with open(output_file, 'w') as f:
+            json.dump(dict_of_scores, f, indent=4)
+
+        print("YARA scores have been calculated successfully.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
+def generate_ai_scores(input_file, output_file):
+    dict_of_scores = {}
+
+    try:
+        with open(input_file, 'r') as f:
+            lines = f.readlines()
+
+            for line in lines:
+                if line.startswith('Benign :') or line.startswith('Malicious :'):
+                    line_parts = line.strip().split(':')
+                    label = line_parts[0].strip()
+                    filename = line_parts[1].strip()
+                    file_hash = line_parts[2].strip()
+                    dict_of_scores[f"{filename}-{file_hash}"] = 0.0 if label == 'Benign' else 1.0
+
+        with open(output_file, 'w') as f:
+            json.dump(dict_of_scores, f, indent=4)
+
+        print("AI scores have been calculated successfully.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
 def get_file_hashes(directory):
     """Retrieves a list of SHA1 hashes for files in the specified directory."""
     file_hashes = []
@@ -144,28 +210,46 @@ def quarantine_file(file_path, quarantine_folder):
     with open(quarantine_config, 'a') as file:
         file.write(os.path.abspath(destination_path) + " " + os.path.abspath("./node_modules") + " " + sha1 + "\n")
 
-    print(f"File {file_path} quarantined in {destination_path}.")
+    print(f"File {os.path.basename(file_path)} quarantined in {destination_path}.")
 
 
 def quarantine_files(dir_path, quarantine_folder):
-    """
-    Logic to quarantine files based on dir_path and whether VT malicious score is
-    above 0.65
-    """
     counter = 0
-    with open(VT_SCORE) as file:
-        json_data = json.load(file)
+    with open(VT_SCORE) as vt_file, open(YARA_SCORE) as yara_file, open(SVM_SCORE) as svm_file, open(XGB_SCORE) as xgb_file\
+            , open(NB_SCORE) as nb_file, open(RF_SCORE) as rf_file:
+        vt_scores = json.load(vt_file)
+        yara_scores = json.load(yara_file)
+        svm_scores = json.load(svm_file)
+        xgb_scores = json.load(xgb_file)
+        nb_scores = json.load(nb_file)
+        rf_scores = json.load(rf_file)
+
     for root, dirs, files in os.walk(dir_path):
         for file in files:
             file_path = os.path.join(root, file)
             file_name = os.path.basename(file_path)
-            file_name = file_name + "-" + calculate_sha1(file_path)
-            for key, value in json_data.items():
-                if file_name == key and value > 0.65:
-                    counter = counter + 1
-                    quarantine_file(file_path, quarantine_folder)
+            sha1_hash = calculate_sha1(file_path)
+            file_identifier = f"{file_name}-{sha1_hash}"
+
+            vt_score = vt_scores.get(file_identifier, 0.0)
+            yara_score = yara_scores.get(file_identifier, 0.0)
+            svm_score = svm_scores.get(file_identifier, 0.0)
+            xgb_score = xgb_scores.get(file_identifier, 0.0)
+            nb_score = nb_scores.get(file_identifier, 0.0)
+            rf_score = rf_scores.get(file_identifier, 0.0)
+            ai_score = svm_score + xgb_score + nb_score + rf_score
+
+            if vt_score > 0.65 or yara_score == 1.0 or ai_score >= 2.0:
+                with(open(QUARANTINE_FOLDER+file_name+".txt", "w")) as file:
+                    file.write(f"VirusTotal score is: {vt_score}\n")
+                    file.write(f"YARA score is: {yara_score}\n")
+                    file.write(f"AI model score is: {ai_score}\n")
+                quarantine_file(file_path, quarantine_folder)
+                counter += 1
+
     if counter > 0:
-        with open(os.path.join(quarantine_folder, "quarantine.conf"), "r+") as file:
+        quarantine_config = os.path.join(quarantine_folder, "quarantine.conf")
+        with open(quarantine_config, "r+") as file:
             file_content = file.read()
             file.seek(0, 0)
             file.write(str(counter) + "\n" + file_content)
@@ -176,7 +260,7 @@ def create_json_file(filename):
     Creates json file based on filename
     filename: name of json file to create
     """
-    directory = "./SCAN_RESULTS"
+    directory = SCORES_DIRECTORY
     if not os.path.exists(directory):
         os.makedirs(directory)
     file_path = os.path.join(directory, filename)
@@ -297,6 +381,7 @@ if tarball_url:
         print(f"Successfully downloaded package {package_name}@{package_version}")
         extract_npm_package(destination_path)
         shutil.move(destination_path, destination_path)
+        os.remove(destination_path)
         if extracted_dir:
             try:
                 # Run different directory scans for viruses
@@ -306,8 +391,19 @@ if tarball_url:
                 print(extracted_dir)
                 # Create scoring system for VT
                 VT_json_path = create_json_file("VT-score.json")
-                scan_directory_vt("./SCAN_RESULTS/VT_output", VT_json_path)
-                # Quarantine based on VT scoring system
+                scan_directory_vt(VT_OUTPUT, VT_json_path)
+                # Create scoring system for YARA
+                generate_yara_scores(os.path.join(scan_results_directory, 'YARA_output.txt'), os.path.join(SCORES_DIRECTORY, "yara-score.json"))
+                # Create scoring system for AI models
+                generate_ai_scores(os.path.join(scan_results_directory, 'svm_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, "SVM-score.json"))
+                generate_ai_scores(os.path.join(scan_results_directory, 'xgb_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, "XGB-score.json"))
+                generate_ai_scores(os.path.join(scan_results_directory, 'nb_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, "NB-score.json"))
+                generate_ai_scores(os.path.join(scan_results_directory, 'rf_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, "RF-score.json"))
+                # Quarantine based on VT, YARA and AI scoring system
                 quarantine_files(extracted_dir, QUARANTINE_FOLDER)
             finally:
                 print("SCRIPT FINISHED")

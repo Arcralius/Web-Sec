@@ -7,6 +7,8 @@ from tqdm import tqdm
 from multiprocessing.pool import Pool
 import threading
 
+print("----------------VIRUSTOTAL SCAN HAS BEGUN\n")
+
 key = "" # put your virustotal API key in key.txt
 with open("key.txt") as f:
     key = f.read()
@@ -58,12 +60,13 @@ def get_report(report_url, filename):
         if x.status_code != 200:
             raise Exception(f"{report_url} returned {x.status_code}")
         report_status = x.json()['data']['attributes']['status']
+        print(report_status)
         if report_status == "completed":
             report = x.json()
             write_summary_file(report, filename)
             return report, filename
         print(f"Report is {report_status}...")
-        time.sleep(15)
+        time.sleep(16)
 
 
 def print_json(report, path):
@@ -139,3 +142,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print("----------------VIRUSTOTAL SCAN IS COMPLETED\n\n")
