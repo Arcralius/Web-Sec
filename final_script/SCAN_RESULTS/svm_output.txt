@@ -1,0 +1,4 @@
+SCAN REPORT FOR SVM SCAN
+
+Benign : to_google.js : a2d2d1dd5c815e34818631b7a48c7d256f9500c5
+Malicious : sus.js : 1cbde92eb7bb0946689172f257b6659c1dc20b35
