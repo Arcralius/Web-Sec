@@ -367,6 +367,15 @@ def cleanup_temp_directory(directory):
     shutil.rmtree(directory)
 
 
+def run_cron():
+    """
+    Run cron.py, a script to warn users about malicious files periodically
+    """
+    command = ['python3', 'cron.py']
+    process = subprocess.Popen(command)
+    process.wait()
+
+
 # Checks npm package syntax
 package = check_npm_install_syntax(" ".join(sys.argv[1:]))
 package_name, package_version = package
@@ -406,6 +415,7 @@ if tarball_url:
                 # Quarantine based on VT, YARA and AI scoring system
                 quarantine_files(extracted_dir, QUARANTINE_FOLDER)
             finally:
+                run_cron()
                 print("SCRIPT FINISHED")
                 print(f"SCAN RESULTS CAN BE FOUND AT {scan_results_directory}")
         else:

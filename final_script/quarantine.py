@@ -73,7 +73,7 @@ def update_first_line(file_path, new_content):
     print(f"Log count updated.")
 
 # Example usage
-file_path = 'test.conf'  # Replace with the path to your file
+file_path = './quarantined_files/quarantine.conf'  # Replace with the path to your file
 
 lines = count_lines(file_path)
 
