@@ -1,12 +1,2 @@
 SCAN REPORT FOR YARA SCAN
 
-No match found in: index.html : [728d0dcd3cbbc4626506eac032e14d6a26402a35]
-
-No match found in: package.json : [4ba71000b1c36fa25fd7dc5faf21fe28a9e47d45]
-
-No match found in: REAMME.md : [1c2a8644b9658fb218c9b39d3a8b58ff432e1d33]
-
-No match found in: to_google.js : [a2d2d1dd5c815e34818631b7a48c7d256f9500c5]
-
-No match found in: sus.js : [1cbde92eb7bb0946689172f257b6659c1dc20b35]
-

@@ -140,7 +140,6 @@ def generate_yara_scores(input_file, output_file):
                     dict_of_scores[f"{filename}-{file_hash}"] = 0.0
 
         with open(output_file, 'a') as f:
-            print(dict_of_scores)
             # json.dump(dict_of_scores, f, indent=4)
             f.write(str(dict_of_scores).replace(",", ",\n").replace("{", "").replace("}", "").replace(" ", ""))
 
@@ -189,7 +188,6 @@ def generate_ai_scores_append(input_file, output_file):
 
         with open(output_file, 'a') as f:
             # json.dump(dict_of_scores, f, indent=4)
-            print(dict_of_scores)
             f.write(str(dict_of_scores).replace("}", ",\n").replace("{", "").replace("}", ""))
 
         print("AI scores have been calculated successfully.")
@@ -405,8 +403,6 @@ def collect_scores(score):
     with open(score, 'r') as file:
         text = file.read()
 
-    print(text)
-
     matches = re.findall(pattern, text, re.DOTALL)
 
     for match in matches:
@@ -415,8 +411,6 @@ def collect_scores(score):
 
     for i in score_arr:
         score_float = score_float + float(i)
-
-    print(score_arr)
 
     return score_float
 
@@ -509,33 +503,37 @@ if tarball_url:
                                    os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
                 generate_ai_scores_append(os.path.join(scan_results_directory, 'rf_output.txt'),
                                    os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
-                print(collect_scores(os.path.join(SCORES_DIRECTORY, package_name) + "-score.json"))
                 # Quarantine based on VT, YARA and AI scoring system
 
                 if collect_scores(os.path.join(SCORES_DIRECTORY, package_name) + "-score.json") > 0.0:
 
                     update_first_line("./modules.conf", int(get_line_by_index("./modules.conf", 1))+ 1)
 
-                    print("this cunt is " + extracted_dir + "/package")
-
-                    print("this other cunt is " + extracted_dir + "/" +  package_name + ".zip")
-
-
                     zip_folder_recursive(extracted_dir + "/package", "/tmp/" +  package_name + ".zip")
                     delete_folder_recursive(extracted_dir)
 
-                    append("./modules.conf", "/tmp/" + package_name + ".zip " + os.getcwd() + "/node_modules/" + package_name + " " + os.getcwd() + "/modules.conf\n")
+                    append("./modules.conf", "/tmp/" + package_name + ".zip " + os.getcwd() + "/node_modules/" + package_name + " " + os.getcwd() + "/SCAN_RESULTS/" + package_name +"_report\n")
                     
 
                     # delete score file
                     os.remove(os.path.join(SCORES_DIRECTORY, package_name) + "-score.json")
-                    os.remove(os.path.join(SCORES_DIRECTORY, "VT-score-" +package_name) + ".json")
-
+                    os.remove(os.path.join(SCORES_DIRECTORY, "VT-score-" + package_name) + ".json")
 
 
                     run_cron()
-                    
-                    
+                    append("./SCAN_RESULTS/"+ package_name +"_report", "\n================MACHINE LEARNING REPORT===================\n")
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/xgb_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/svm_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/rf_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/nb_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", "\n================YARA REPORT====================\n")
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/YARA_output.txt"))
+                    os.remove("./SCAN_RESULTS/xgb_output.txt")
+                    os.remove("./SCAN_RESULTS/svm_output.txt")
+                    os.remove("./SCAN_RESULTS/rf_output.txt")
+                    os.remove("./SCAN_RESULTS/nb_output.txt")
+                    os.remove("./SCAN_RESULTS/YARA_output.txt")
+                    append(package_name + " scan results", opener("./SCAN_RESULTS/YARA_output.txt"))
                     
                     # quarantine_files(extracted_dir, QUARANTINE_FOLDER)
                 # collect_scores(package_name + "-score.json")

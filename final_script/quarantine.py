@@ -106,7 +106,10 @@ lines = count_lines(file_path)
 
 remove_cron_job("prompts.py")
 
+
+
 if lines > 1:
+    
     x = 2
     while x != lines + 1:
         line_contents = split(get_line_by_index(file_path, x))
@@ -134,3 +137,4 @@ if lines > 1:
         remove_line_from_file(file_path, x)
         update_first_line(file_path, str(int(lines) - 2))
         x = x + 1
+        os.remove(line_contents[2])
