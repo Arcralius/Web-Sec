@@ -3,7 +3,7 @@ import os
 
 
 def readConf():
-    file_path = "./quarantined_files/quarantine.conf"  # Replace with the actual file path
+    file_path = "./modules.conf"  # Replace with the actual file path
     try:
         # Open the file in read mode
         with open(file_path, 'r') as file:

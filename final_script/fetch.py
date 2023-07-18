@@ -9,6 +9,7 @@ import subprocess
 import hashlib
 import json
 import zipfile
+import linecache
 
 # CONSTANTS
 REGISTRY = "http://localhost:4873/"
@@ -138,8 +139,9 @@ def generate_yara_scores(input_file, output_file):
                     file_hash = line_parts[1].split(' : ')[1].strip('[]')
                     dict_of_scores[f"{filename}-{file_hash}"] = 0.0
 
-        with open(output_file, 'w') as f:
-            json.dump(dict_of_scores, f, indent=4)
+        with open(output_file, 'a') as f:
+            # json.dump(dict_of_scores, f, indent=4)
+            f.write(str(dict_of_scores).replace(",", ",\n").replace("{", "").replace("}", "").replace(" ", ""))
 
         print("YARA scores have been calculated successfully.")
     except Exception as e:
@@ -163,6 +165,30 @@ def generate_ai_scores(input_file, output_file):
 
         with open(output_file, 'w') as f:
             json.dump(dict_of_scores, f, indent=4)
+
+        print("AI scores have been calculated successfully.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
+def generate_ai_scores_append(input_file, output_file):
+    dict_of_scores = {}
+
+    try:
+        with open(input_file, 'r') as f:
+            lines = f.readlines()
+
+            for line in lines:
+                if line.startswith('Benign :') or line.startswith('Malicious :'):
+                    line_parts = line.strip().split(':')
+                    label = line_parts[0].strip()
+                    filename = line_parts[1].strip()
+                    file_hash = line_parts[2].strip()
+                    dict_of_scores[f"{filename}-{file_hash}"] = 0.0 if label == 'Benign' else 1.0
+
+        with open(output_file, 'a') as f:
+            # json.dump(dict_of_scores, f, indent=4)
+            f.write(str(dict_of_scores).replace("}", ",\n").replace("{", "").replace("}", ""))
 
         print("AI scores have been calculated successfully.")
     except Exception as e:
@@ -253,6 +279,8 @@ def quarantine_files(dir_path, quarantine_folder):
             file_content = file.read()
             file.seek(0, 0)
             file.write(str(counter) + "\n" + file_content)
+
+# def zip_and_quarantine(dir_path, quarantine_folder):
 
 
 def create_json_file(filename):
@@ -367,6 +395,39 @@ def cleanup_temp_directory(directory):
     shutil.rmtree(directory)
 
 
+def collect_scores(score):
+    score_arr = []
+    score_float = 0.0
+    pattern = r":\s*([+-]?\d+(?:\.\d+)?)" # Regex pattern to capture the content after colon until newline or end of string
+
+    with open(score, 'r') as file:
+        text = file.read()
+
+    matches = re.findall(pattern, text, re.DOTALL)
+
+    for match in matches:
+
+        score_arr.append(match.strip())
+
+    for i in score_arr:
+        score_float = score_float + float(i)
+
+    return score_float
+
+
+def append(path, text):
+    with open(path, 'a') as file:
+    # Append content to the file
+        file.write(str(text))
+
+
+def opener(file_path):
+    with open(file_path, 'r') as file:
+        text = file.read()
+
+    return text
+
+
 def run_cron():
     """
     Run cron.py, a script to warn users about malicious files periodically
@@ -375,6 +436,32 @@ def run_cron():
     process = subprocess.Popen(command)
     process.wait()
 
+
+def update_first_line(file_path, new_content):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    lines[0] = str(new_content) + '\n'
+
+    with open(file_path, 'w') as file:
+        file.writelines(lines)
+
+    print(f"Log count updated.")
+
+def get_line_by_index(file_path, line_index):
+    line = linecache.getline(file_path, line_index)
+    return line.strip()
+
+def zip_folder_recursive(folder_path, zip_file_path):
+    with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
+        for root, _, files in os.walk(folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                zip_file.write(file_path, arcname=os.path.relpath(file_path, folder_path))
+
+def delete_folder_recursive(folder_path):
+    shutil.rmtree(folder_path)
+    print("Folder deleted successfully.")
 
 # Checks npm package syntax
 package = check_npm_install_syntax(" ".join(sys.argv[1:]))
@@ -396,26 +483,61 @@ if tarball_url:
                 # Run different directory scans for viruses
                 scan_directory_for_viruses_yara(extracted_dir)
                 scan_directory_for_viruses_ai(extracted_dir)
-                scan_directory_for_viruses_vt(extracted_dir)
+                # scan_directory_for_viruses_vt(extracted_dir)
                 print(extracted_dir)
                 # Create scoring system for VT
-                VT_json_path = create_json_file("VT-score.json")
-                scan_directory_vt(VT_OUTPUT, VT_json_path)
+                VT_json_path = create_json_file("VT-score-" + package_name + ".json")
+                # scan_directory_vt(VT_OUTPUT, VT_json_path)
+                append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), "VT")
+                # append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), opener(os.path.join(SCORES_DIRECTORY, "VT-score.json")).replace("{", "").replace("}", "").replace("    ", ""))
                 # Create scoring system for YARA
-                generate_yara_scores(os.path.join(scan_results_directory, 'YARA_output.txt'), os.path.join(SCORES_DIRECTORY, "yara-score.json"))
+                append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), "yara\n")
+                generate_yara_scores(os.path.join(scan_results_directory, 'YARA_output.txt'), os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
                 # Create scoring system for AI models
-                generate_ai_scores(os.path.join(scan_results_directory, 'svm_output.txt'),
-                                   os.path.join(SCORES_DIRECTORY, "SVM-score.json"))
-                generate_ai_scores(os.path.join(scan_results_directory, 'xgb_output.txt'),
-                                   os.path.join(SCORES_DIRECTORY, "XGB-score.json"))
-                generate_ai_scores(os.path.join(scan_results_directory, 'nb_output.txt'),
-                                   os.path.join(SCORES_DIRECTORY, "NB-score.json"))
-                generate_ai_scores(os.path.join(scan_results_directory, 'rf_output.txt'),
-                                   os.path.join(SCORES_DIRECTORY, "RF-score.json"))
+                append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), "\nAI\n")
+                generate_ai_scores_append(os.path.join(scan_results_directory, 'svm_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
+                generate_ai_scores_append(os.path.join(scan_results_directory, 'xgb_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
+                generate_ai_scores_append(os.path.join(scan_results_directory, 'nb_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
+                generate_ai_scores_append(os.path.join(scan_results_directory, 'rf_output.txt'),
+                                   os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
                 # Quarantine based on VT, YARA and AI scoring system
-                quarantine_files(extracted_dir, QUARANTINE_FOLDER)
+
+                if collect_scores(os.path.join(SCORES_DIRECTORY, package_name) + "-score.json") > 0.0:
+
+                    update_first_line("./modules.conf", int(get_line_by_index("./modules.conf", 1))+ 1)
+
+                    zip_folder_recursive(extracted_dir + "/package", "/tmp/" +  package_name + ".zip")
+                    delete_folder_recursive(extracted_dir)
+
+                    append("./modules.conf", "/tmp/" + package_name + ".zip " + os.getcwd() + "/node_modules/" + package_name + " " + os.getcwd() + "/SCAN_RESULTS/" + package_name +"_report\n")
+                    
+
+                    # delete score file
+                    os.remove(os.path.join(SCORES_DIRECTORY, package_name) + "-score.json")
+                    os.remove(os.path.join(SCORES_DIRECTORY, "VT-score-" + package_name) + ".json")
+
+
+                    run_cron()
+                    append("./SCAN_RESULTS/"+ package_name +"_report", "\n================MACHINE LEARNING REPORT===================\n")
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/xgb_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/svm_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/rf_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/nb_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", "\n================YARA REPORT====================\n")
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/YARA_output.txt"))
+                    os.remove("./SCAN_RESULTS/xgb_output.txt")
+                    os.remove("./SCAN_RESULTS/svm_output.txt")
+                    os.remove("./SCAN_RESULTS/rf_output.txt")
+                    os.remove("./SCAN_RESULTS/nb_output.txt")
+                    os.remove("./SCAN_RESULTS/YARA_output.txt")
+                    append(package_name + " scan results", opener("./SCAN_RESULTS/YARA_output.txt"))
+                    
+                    # quarantine_files(extracted_dir, QUARANTINE_FOLDER)
+                # collect_scores(package_name + "-score.json")
             finally:
-                run_cron()
                 print("SCRIPT FINISHED")
                 print(f"SCAN RESULTS CAN BE FOUND AT {scan_results_directory}")
         else:

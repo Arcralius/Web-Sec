@@ -1,6 +1,7 @@
 import linecache
 import zipfile
 import os
+import subprocess
 
 def get_line_by_index(file_path, line_index):
     line = linecache.getline(file_path, line_index)
@@ -72,18 +73,50 @@ def update_first_line(file_path, new_content):
 
     print(f"Log count updated.")
 
+def append_to_file(file_path, line):
+    with open(file_path, 'a') as file:
+        file.write(line + '\n')
+
+def remove_cron_job(job_to_remove):
+    # Get the current user's crontab using the 'crontab -l' command
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    desired_file_path = os.path.join(script_directory, job_to_remove)
+    cron_command = f"* * * * * python3 {desired_file_path}\n"
+
+    try:
+        crontab_output = subprocess.check_output(['crontab', '-l']).decode('utf-8')
+    except subprocess.CalledProcessError:
+        print("Error: Failed to retrieve current user's crontab.")
+        return
+
+    # Remove the desired cron job from the crontab output
+    modified_crontab = '\n'.join(line for line in crontab_output.splitlines() if job_to_remove not in line)
+
+    # Load the modified crontab using the 'crontab -' command
+    try:
+        subprocess.check_output(['crontab', '-'], input=modified_crontab.encode('utf-8'))
+        print(f"The cron job '{cron_command}' has been removed from the current user's crontab.")
+    except subprocess.CalledProcessError:
+        print("Error: Failed to update current user's crontab.")
+
 # Example usage
-file_path = './quarantined_files/quarantine.conf'  # Replace with the path to your file
+file_path = 'modules.conf'  # Replace with the path to your file
 
 lines = count_lines(file_path)
 
+remove_cron_job("prompts.py")
+
+
+
 if lines > 1:
+    
     x = 2
     while x != lines + 1:
         line_contents = split(get_line_by_index(file_path, x))
 
         print("Malware Log: ")
-
+        
+        print(line_contents[2])
         print_file_contents(line_contents[2])
 
         print("")
@@ -104,3 +137,4 @@ if lines > 1:
         remove_line_from_file(file_path, x)
         update_first_line(file_path, str(int(lines) - 2))
         x = x + 1
+        os.remove(line_contents[2])
