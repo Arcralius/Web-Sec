@@ -13,13 +13,14 @@ import linecache
 
 # CONSTANTS
 REGISTRY = "http://localhost:4873/"
-# Get the directory of the currently running script
+# Initialize constants and create folders/files before running script
 script_directory = os.path.dirname(os.path.abspath(__file__))
 scan_results_directory = os.path.join(script_directory, "SCAN_RESULTS")
 if not os.path.exists(scan_results_directory):
     os.makedirs(scan_results_directory)
 QUARANTINE_FOLDER = "./quarantined_files/"
-VT_SCORE = "./SCAN_RESULTS/VT-score.json"
+if not os.path.exists(QUARANTINE_FOLDER):
+    os.makedirs(QUARANTINE_FOLDER)
 VT_OUTPUT = "./SCAN_RESULTS/VT_output/"
 if not os.path.exists(VT_OUTPUT):
     os.makedirs(VT_OUTPUT)
@@ -33,9 +34,8 @@ SVM_SCORE = os.path.join(SCORES_DIRECTORY, "SVM-score.json")
 XGB_SCORE = os.path.join(SCORES_DIRECTORY, "XGB-score.json")
 NB_SCORE = os.path.join(SCORES_DIRECTORY, "NB-score.json")
 RF_SCORE = os.path.join(SCORES_DIRECTORY, "RF-score.json")
-
-
-# Initialize folders and files needed
+with open(os.path.join(script_directory, "modules.conf"), "w") as file:
+    file.write("0")
 
 
 def check_npm_install_syntax(command):
@@ -209,6 +209,8 @@ def get_file_hashes(directory):
 def quarantine_file(file_path, quarantine_folder):
     """
     Quarantine file based on file_path
+    file_path: path of file to quarantine
+    quarantine_folder: dir to quarantine files in
     """
     # Create the quarantine folder if it doesn't exist
     if not os.path.exists(quarantine_folder):
@@ -229,8 +231,9 @@ def quarantine_file(file_path, quarantine_folder):
     # Create a new zip file
     with zipfile.ZipFile(destination_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
 
-        # Add the original file to the zip archive
+        # Add the original file to the zip archive and remove original file
         zip_file.write(file_path, os.path.basename(file_path))
+        os.remove(file_path)
 
     # Add entry in config file
     with open(quarantine_config, 'a') as file:
@@ -279,8 +282,6 @@ def quarantine_files(dir_path, quarantine_folder):
             file_content = file.read()
             file.seek(0, 0)
             file.write(str(counter) + "\n" + file_content)
-
-# def zip_and_quarantine(dir_path, quarantine_folder):
 
 
 def create_json_file(filename):
@@ -533,7 +534,7 @@ if tarball_url:
                     os.remove("./SCAN_RESULTS/rf_output.txt")
                     os.remove("./SCAN_RESULTS/nb_output.txt")
                     os.remove("./SCAN_RESULTS/YARA_output.txt")
-                    append(package_name + " scan results", opener("./SCAN_RESULTS/YARA_output.txt"))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", package_name + " scan results")
                     
                     # quarantine_files(extracted_dir, QUARANTINE_FOLDER)
                 # collect_scores(package_name + "-score.json")

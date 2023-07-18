@@ -100,7 +100,7 @@ def remove_cron_job(job_to_remove):
         print("Error: Failed to update current user's crontab.")
 
 # Example usage
-file_path = 'modules.conf'  # Replace with the path to your file
+file_path = file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "modules.conf") # Replace with the path to your file
 
 lines = count_lines(file_path)
 
