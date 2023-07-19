@@ -464,6 +464,15 @@ def delete_folder_recursive(folder_path):
     shutil.rmtree(folder_path)
     print("Folder deleted successfully.")
 
+def append_files_to_single_file(source_dir, destination_file):
+    with open(destination_file, 'a') as dest:
+        for root, _, files in os.walk(source_dir):
+            for file in files:
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r') as src:
+                    dest.write(src.read())
+                    dest.write('\n')
+
 # Checks npm package syntax
 package = check_npm_install_syntax(" ".join(sys.argv[1:]))
 package_name, package_version = package
@@ -484,13 +493,13 @@ if tarball_url:
                 # Run different directory scans for viruses
                 scan_directory_for_viruses_yara(extracted_dir)
                 scan_directory_for_viruses_ai(extracted_dir)
-                # scan_directory_for_viruses_vt(extracted_dir)
+                scan_directory_for_viruses_vt(extracted_dir)
                 print(extracted_dir)
                 # Create scoring system for VT
                 VT_json_path = create_json_file("VT-score-" + package_name + ".json")
-                # scan_directory_vt(VT_OUTPUT, VT_json_path)
+                scan_directory_vt(VT_OUTPUT, VT_json_path)
                 append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), "VT")
-                # append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), opener(os.path.join(SCORES_DIRECTORY, "VT-score.json")).replace("{", "").replace("}", "").replace("    ", ""))
+                append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), opener(os.path.join(SCORES_DIRECTORY, "VT-score-" + package_name + ".json")).replace("{", "").replace("}", "").replace("    ", ""))
                 # Create scoring system for YARA
                 append(os.path.join(SCORES_DIRECTORY, package_name + "-score.json"), "yara\n")
                 generate_yara_scores(os.path.join(scan_results_directory, 'YARA_output.txt'), os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
@@ -522,6 +531,12 @@ if tarball_url:
 
 
                     run_cron()
+
+                    # Combine all VT output 
+                    append_files_to_single_file("./SCAN_RESULTS/VT_output","./SCAN_RESULTS/VT-" + package_name + ".txt")
+                    append("./SCAN_RESULTS/"+ package_name +"_report", "\n================VIRUS TOTAL REPORT===================\n")
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener('./SCAN_RESULTS/VT-' + package_name + '.txt').replace('[{"meta": {"', "").replace('},', "\n").replace('"results": ', '"results":\n').replace(', "links"', "\nlinks").replace(']', "\n\n").replace('}}\n', "\nFILE SCANNED: ").replace('{', "").replace('}', "").replace('"', ""))
+                    # Combine all reports
                     append("./SCAN_RESULTS/"+ package_name +"_report", "\n================MACHINE LEARNING REPORT===================\n")
                     append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/xgb_output.txt"))
                     append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/svm_output.txt"))
@@ -529,18 +544,31 @@ if tarball_url:
                     append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/nb_output.txt"))
                     append("./SCAN_RESULTS/"+ package_name +"_report", "\n================YARA REPORT====================\n")
                     append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/YARA_output.txt"))
+
+                    # Removed all report files
                     os.remove("./SCAN_RESULTS/xgb_output.txt")
                     os.remove("./SCAN_RESULTS/svm_output.txt")
                     os.remove("./SCAN_RESULTS/rf_output.txt")
                     os.remove("./SCAN_RESULTS/nb_output.txt")
                     os.remove("./SCAN_RESULTS/YARA_output.txt")
+                    os.remove("./SCAN_RESULTS/VT-" + package_name + ".txt")
+                    delete_folder_recursive("./SCAN_RESULTS/VT_output")
+
+                    # Add what file was scanned at the bottom of the file 
                     append("./SCAN_RESULTS/"+ package_name +"_report", package_name + " scan results")
-                    
-                    # quarantine_files(extracted_dir, QUARANTINE_FOLDER)
-                # collect_scores(package_name + "-score.json")
+
+                    print()
+                    print(f"SCAN RESULTS CAN BE FOUND AT {scan_results_directory}")
+                else:
+                   # Move file into supposed install directory if it is not malicious
+                   shutil.move(extracted_dir + "/package", os.getcwd() + "/node_modules/" + package_name) 
+                   print()
+                   print(f"NO MALICIOUS FILES HAVE BEEN DETECTED {package_name} HAS BEEN INSTALLED")
             finally:
-                print("SCRIPT FINISHED")
-                print(f"SCAN RESULTS CAN BE FOUND AT {scan_results_directory}")
+                print("EXITING")
+                file_directory = os.path.abspath(__file__)
+                print("\nThere are files that are sus, please run 'python/python3 " + file_directory + "/quarantine.py'")
+                
         else:
             raise Exception("Package extraction failed")
     else:
