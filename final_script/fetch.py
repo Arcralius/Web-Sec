@@ -10,6 +10,7 @@ import hashlib
 import json
 import zipfile
 import linecache
+import datetime
 
 # CONSTANTS
 REGISTRY = "http://localhost:4873/"
@@ -24,6 +25,13 @@ if not os.path.exists(QUARANTINE_FOLDER):
 VT_OUTPUT = "./SCAN_RESULTS/VT_output/"
 if not os.path.exists(VT_OUTPUT):
     os.makedirs(VT_OUTPUT)
+else:
+    for file in os.listdir(VT_OUTPUT):
+        try:
+            file = os.path.join(VT_OUTPUT, file)
+            os.remove(file)
+        except Exception as e:
+            print(f"{VT_OUTPUT} directory has folders inside")
 SCORES_DIRECTORY = os.path.join(script_directory, "SCAN_SCORES")
 if not os.path.exists(SCORES_DIRECTORY):
     os.makedirs(SCORES_DIRECTORY)
@@ -470,7 +478,14 @@ def append_files_to_single_file(source_dir, destination_file):
             for file in files:
                 file_path = os.path.join(root, file)
                 with open(file_path, 'r') as src:
-                    dest.write(src.read())
+                    json_data = json.loads(src.read())
+                    attrib = json_data[0]['data']['attributes']
+                    summary = [f'Filename:\t{os.path.basename(json_data[1])}',
+                               f'SHA256 Hash:\t{json_data[0]["meta"]["file_info"]["sha256"]}',
+                               f'Date Scanned:\t{datetime.datetime.fromtimestamp(attrib["date"])}',
+                               f'Detections: {attrib["stats"]["malicious"]}/{sum(attrib["stats"].values())}',
+                               '\n']
+                    dest.write('\n'.join(summary))
                     dest.write('\n')
 
 # Checks npm package syntax
@@ -535,7 +550,7 @@ if tarball_url:
                     # Combine all VT output 
                     append_files_to_single_file("./SCAN_RESULTS/VT_output","./SCAN_RESULTS/VT-" + package_name + ".txt")
                     append("./SCAN_RESULTS/"+ package_name +"_report", "\n================VIRUS TOTAL REPORT===================\n")
-                    append("./SCAN_RESULTS/"+ package_name +"_report", opener('./SCAN_RESULTS/VT-' + package_name + '.txt').replace('[{"meta": {"', "").replace('},', "\n").replace('"results": ', '"results":\n').replace(', "links"', "\nlinks").replace(']', "\n\n").replace('}}\n', "\nFILE SCANNED: ").replace('{', "").replace('}', "").replace('"', ""))
+                    append("./SCAN_RESULTS/"+ package_name +"_report", opener('./SCAN_RESULTS/VT-' + package_name + '.txt'))
                     # Combine all reports
                     append("./SCAN_RESULTS/"+ package_name +"_report", "\n================MACHINE LEARNING REPORT===================\n")
                     append("./SCAN_RESULTS/"+ package_name +"_report", opener("./SCAN_RESULTS/xgb_output.txt"))
@@ -559,6 +574,9 @@ if tarball_url:
 
                     print()
                     print(f"SCAN RESULTS CAN BE FOUND AT {scan_results_directory}")
+                    file_directory = os.path.abspath(__file__)
+                    print(
+                        "\nThere are files that are sus, please run 'python/python3 " + file_directory + "/quarantine.py'")
                 else:
                    # Move file into supposed install directory if it is not malicious
                    shutil.move(extracted_dir + "/package", os.getcwd() + "/node_modules/" + package_name) 
@@ -566,8 +584,6 @@ if tarball_url:
                    print(f"NO MALICIOUS FILES HAVE BEEN DETECTED {package_name} HAS BEEN INSTALLED")
             finally:
                 print("EXITING")
-                file_directory = os.path.abspath(__file__)
-                print("\nThere are files that are sus, please run 'python/python3 " + file_directory + "/quarantine.py'")
                 
         else:
             raise Exception("Package extraction failed")

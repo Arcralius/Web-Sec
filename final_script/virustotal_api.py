@@ -60,7 +60,6 @@ def get_report(report_url, filename):
         if x.status_code != 200:
             raise Exception(f"{report_url} returned {x.status_code}")
         report_status = x.json()['data']['attributes']['status']
-        print(report_status)
         if report_status == "completed":
             report = x.json()
             write_summary_file(report, filename)
