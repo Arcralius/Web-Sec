@@ -11,6 +11,21 @@ import json
 import zipfile
 import linecache
 import datetime
+import numpy as np
+import tensorflow as tf
+
+
+class Ensembler:
+    def __init__(self):
+        """ loads model """
+        self.model = tf.keras.models.load_model('ensembler.h5')
+
+    def predict(self, scores):
+        """ Takes in an array of scores.
+            Adds a 'batch size' to it so I can run predict() """
+        scores = np.expand_dims(np.array(scores), axis=0)
+        return self.model.predict(scores, verbose=False)[0][0]
+
 
 # CONSTANTS
 REGISTRY = "http://localhost:4873/"
@@ -404,26 +419,6 @@ def cleanup_temp_directory(directory):
     shutil.rmtree(directory)
 
 
-def collect_scores(score):
-    score_arr = []
-    score_float = 0.0
-    pattern = r":\s*([+-]?\d+(?:\.\d+)?)" # Regex pattern to capture the content after colon until newline or end of string
-
-    with open(score, 'r') as file:
-        text = file.read()
-
-    matches = re.findall(pattern, text, re.DOTALL)
-
-    for match in matches:
-
-        score_arr.append(match.strip())
-
-    for i in score_arr:
-        score_float = score_float + float(i)
-
-    return score_float
-
-
 def append(path, text):
     with open(path, 'a') as file:
     # Append content to the file
@@ -455,7 +450,6 @@ def update_first_line(file_path, new_content):
     with open(file_path, 'w') as file:
         file.writelines(lines)
 
-    print(f"Log count updated.")
 
 def get_line_by_index(file_path, line_index):
     line = linecache.getline(file_path, line_index)
@@ -470,7 +464,6 @@ def zip_folder_recursive(folder_path, zip_file_path):
 
 def delete_folder_recursive(folder_path):
     shutil.rmtree(folder_path)
-    print("Folder deleted successfully.")
 
 def append_files_to_single_file(source_dir, destination_file):
     with open(destination_file, 'a') as dest:
@@ -487,6 +480,67 @@ def append_files_to_single_file(source_dir, destination_file):
                                '\n']
                     dest.write('\n'.join(summary))
                     dest.write('\n')
+
+def compare_scores(score_output):
+    counter = 0
+    with open(score_output, "r") as f:
+        content = f.read()
+        ai = content.find("AI")
+        ai_score = content[ai:]
+    matches = re.findall(r"'(.*?)':\s(\d+\.\d+)", ai_score)
+
+    file_scores = {}
+    for file_name, score in matches:
+        if file_name not in file_scores:
+            file_scores[file_name] = []
+        file_scores[file_name].append(float(score))
+
+    ensembler = Ensembler()
+
+    for key, value in file_scores.items():
+        prediction = ensembler.predict(value)
+        if prediction > 0.95:
+            counter = counter + 1
+            print(f"{key} is malicious from AI results")
+
+    # YARA
+    with open(score_output, "r") as f:
+        content = f.read()
+        yara = content.find("yara")
+        yara_score = content[yara:ai]
+
+    yara_dict = eval("{" + yara_score.replace("yara", "") + "}")
+
+    # Loop through the dictionary and check for scores above 0
+    for file_name, score in yara_dict.items():
+        if score > 0:
+            counter = counter + 1
+            print(f"{file_name} is malicious from YARA scan results")
+
+    # VT
+
+    with open(score_output, "r") as f:
+        content = f.read()
+        vt = content.find("VT")
+        vt_score = content[vt:yara]
+
+    # Remove the first line (VT) to make it a valid dictionary
+    output_dict = "{" + vt_score.replace("VT", "").strip() + "}"
+
+    # Evaluate the output as a dictionary
+    file_scores = eval(output_dict)
+
+    # Loop through the dictionary and check for scores above 0.8
+    for file_name, score in file_scores.items():
+        if score > 0.8:
+            counter = counter + 1
+            print(f"{file_name} is malicious from VT scan results")
+
+    if counter > 0:
+        return 1
+    else:
+        return 0
+
 
 # Checks npm package syntax
 package = check_npm_install_syntax(" ".join(sys.argv[1:]))
@@ -530,7 +584,7 @@ if tarball_url:
                                    os.path.join(SCORES_DIRECTORY, package_name + "-score.json"))
                 # Quarantine based on VT, YARA and AI scoring system
 
-                if collect_scores(os.path.join(SCORES_DIRECTORY, package_name) + "-score.json") > 0.0:
+                if compare_scores(os.path.join(SCORES_DIRECTORY, package_name) + "-score.json") > 0.0:
 
                     update_first_line("./modules.conf", int(get_line_by_index("./modules.conf", 1))+ 1)
 

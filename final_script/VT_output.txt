@@ -943,3 +943,1018 @@ SHA256 Hash:	a998ecbac30f2080695939913adb9c907727ce75665fab74e9070c79aef2efde
 Date Scanned:	2023-07-17 23:01:14
 Detections: 0/75
 
+Filename:	/tmp/tmpb74skylh/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 14:55:24
+Detections: 32/75
+
+Filename:	/tmp/tmpb74skylh/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 14:55:24
+Detections: 0/75
+
+Filename:	/tmp/tmpb74skylh/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 14:55:24
+Detections: 31/75
+
+Filename:	/tmp/tmpb74skylh/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 14:55:24
+Detections: 31/75
+
+Filename:	/tmp/tmpb74skylh/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 14:55:24
+Detections: 35/75
+
+Filename:	/tmp/tmpb74skylh/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 14:55:24
+Detections: 31/75
+
+Filename:	/tmp/tmpb74skylh/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 14:55:24
+Detections: 27/75
+
+Filename:	/tmp/tmp2a6qhbgt/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 14:55:24
+Detections: 32/75
+
+Filename:	/tmp/tmp2a6qhbgt/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 14:55:24
+Detections: 0/75
+
+Filename:	/tmp/tmp2a6qhbgt/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 14:55:24
+Detections: 31/75
+
+Filename:	/tmp/tmp2a6qhbgt/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 14:55:24
+Detections: 31/75
+
+Filename:	/tmp/tmp2a6qhbgt/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 14:55:24
+Detections: 35/75
+
+Filename:	/tmp/tmp2a6qhbgt/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 14:55:24
+Detections: 31/75
+
+Filename:	/tmp/tmp2a6qhbgt/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 14:55:24
+Detections: 27/75
+
+Filename:	/tmp/tmphph_gjkk/package/LICENSE
+SHA256 Hash:	513b9d20252ce8afff4d02733b10c6868de29dc933df0be7df9f68018a8351d2
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmphph_gjkk/package/package.json
+SHA256 Hash:	7d363ac26a004f9db3f7b230f05cb2c9b489f64556e7b0491080bc3730360716
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmphph_gjkk/package/README.md
+SHA256 Hash:	2da81c0ed694655331227a11861526cb490262143922db9d17bbbbde4de8e4cc
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmphph_gjkk/package/dist/index.cjs
+SHA256 Hash:	c7e7b731ea55937065f754dca203c7a321abed95ef6436117b63d3fdba1c64cb
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmphph_gjkk/package/dist/index.umd.js
+SHA256 Hash:	f3c8f70ee4d22d7e027bd4529502debecf379d394ddbdba7e99bdb8e6a44773d
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmphph_gjkk/package/dist/index.esm.js
+SHA256 Hash:	89a3d7b3800b01a23d63579dab52cc917ba6f5f752a53baaa5cb187b44cbbd7a
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmphph_gjkk/package/dist/index.d.ts
+SHA256 Hash:	c75a6f58402441cf4af7ef228633e97c417a63c74957860ba5c087fd61b0677e
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpct8nq22m/package/LICENSE
+SHA256 Hash:	513b9d20252ce8afff4d02733b10c6868de29dc933df0be7df9f68018a8351d2
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpct8nq22m/package/package.json
+SHA256 Hash:	7d363ac26a004f9db3f7b230f05cb2c9b489f64556e7b0491080bc3730360716
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpct8nq22m/package/README.md
+SHA256 Hash:	2da81c0ed694655331227a11861526cb490262143922db9d17bbbbde4de8e4cc
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpct8nq22m/package/dist/index.cjs
+SHA256 Hash:	c7e7b731ea55937065f754dca203c7a321abed95ef6436117b63d3fdba1c64cb
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpct8nq22m/package/dist/index.umd.js
+SHA256 Hash:	f3c8f70ee4d22d7e027bd4529502debecf379d394ddbdba7e99bdb8e6a44773d
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpct8nq22m/package/dist/index.esm.js
+SHA256 Hash:	89a3d7b3800b01a23d63579dab52cc917ba6f5f752a53baaa5cb187b44cbbd7a
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpct8nq22m/package/dist/index.d.ts
+SHA256 Hash:	c75a6f58402441cf4af7ef228633e97c417a63c74957860ba5c087fd61b0677e
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmp6_rtgdcn/package/LICENSE
+SHA256 Hash:	513b9d20252ce8afff4d02733b10c6868de29dc933df0be7df9f68018a8351d2
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmp6_rtgdcn/package/package.json
+SHA256 Hash:	7d363ac26a004f9db3f7b230f05cb2c9b489f64556e7b0491080bc3730360716
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmp6_rtgdcn/package/README.md
+SHA256 Hash:	2da81c0ed694655331227a11861526cb490262143922db9d17bbbbde4de8e4cc
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmp6_rtgdcn/package/dist/index.cjs
+SHA256 Hash:	c7e7b731ea55937065f754dca203c7a321abed95ef6436117b63d3fdba1c64cb
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmp6_rtgdcn/package/dist/index.umd.js
+SHA256 Hash:	f3c8f70ee4d22d7e027bd4529502debecf379d394ddbdba7e99bdb8e6a44773d
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmp6_rtgdcn/package/dist/index.esm.js
+SHA256 Hash:	89a3d7b3800b01a23d63579dab52cc917ba6f5f752a53baaa5cb187b44cbbd7a
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmp6_rtgdcn/package/dist/index.d.ts
+SHA256 Hash:	c75a6f58402441cf4af7ef228633e97c417a63c74957860ba5c087fd61b0677e
+Date Scanned:	2023-07-20 15:05:35
+Detections: 0/75
+
+Filename:	/tmp/tmpqh5fjcjm/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 15:19:49
+Detections: 32/75
+
+Filename:	/tmp/tmpqh5fjcjm/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 15:19:49
+Detections: 0/75
+
+Filename:	/tmp/tmpqh5fjcjm/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 15:19:49
+Detections: 30/75
+
+Filename:	/tmp/tmpqh5fjcjm/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 15:19:49
+Detections: 31/75
+
+Filename:	/tmp/tmpqh5fjcjm/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 15:19:49
+Detections: 35/75
+
+Filename:	/tmp/tmpqh5fjcjm/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 15:19:49
+Detections: 31/75
+
+Filename:	/tmp/tmpqh5fjcjm/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 15:19:49
+Detections: 27/75
+
+Filename:	/tmp/tmptwz_0sve/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:22:20
+Detections: 32/75
+
+Filename:	/tmp/tmptwz_0sve/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:22:19
+Detections: 0/75
+
+Filename:	/tmp/tmptwz_0sve/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmptwz_0sve/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmptwz_0sve/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:22:20
+Detections: 34/75
+
+Filename:	/tmp/tmptwz_0sve/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmptwz_0sve/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:22:19
+Detections: 27/75
+
+Filename:	/tmp/tmpujogbuy4/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:22:20
+Detections: 32/75
+
+Filename:	/tmp/tmpujogbuy4/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:22:19
+Detections: 0/75
+
+Filename:	/tmp/tmpujogbuy4/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmpujogbuy4/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmpujogbuy4/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:22:20
+Detections: 34/75
+
+Filename:	/tmp/tmpujogbuy4/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmpujogbuy4/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:22:19
+Detections: 27/75
+
+Filename:	/tmp/tmp1peot3bf/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:22:20
+Detections: 32/75
+
+Filename:	/tmp/tmp1peot3bf/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:22:19
+Detections: 0/75
+
+Filename:	/tmp/tmp1peot3bf/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmp1peot3bf/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmp1peot3bf/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:22:20
+Detections: 34/75
+
+Filename:	/tmp/tmp1peot3bf/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:22:19
+Detections: 30/75
+
+Filename:	/tmp/tmp1peot3bf/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:22:19
+Detections: 27/75
+
+Filename:	/tmp/tmpskhytlrx/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpskhytlrx/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:44:10
+Detections: 0/75
+
+Filename:	/tmp/tmpskhytlrx/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:44:10
+Detections: 30/75
+
+Filename:	/tmp/tmpskhytlrx/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpskhytlrx/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpskhytlrx/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpskhytlrx/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:44:10
+Detections: 27/75
+
+Filename:	/tmp/tmpizabthv5/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpizabthv5/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:44:10
+Detections: 0/75
+
+Filename:	/tmp/tmpizabthv5/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:44:10
+Detections: 30/75
+
+Filename:	/tmp/tmpizabthv5/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpizabthv5/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpizabthv5/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpizabthv5/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:44:10
+Detections: 27/75
+
+Filename:	/tmp/tmpfa9b6lnl/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpfa9b6lnl/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:44:10
+Detections: 0/75
+
+Filename:	/tmp/tmpfa9b6lnl/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:44:10
+Detections: 30/75
+
+Filename:	/tmp/tmpfa9b6lnl/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpfa9b6lnl/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpfa9b6lnl/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpfa9b6lnl/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:44:10
+Detections: 27/75
+
+Filename:	/tmp/tmpdmlykt_3/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpdmlykt_3/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:44:10
+Detections: 0/75
+
+Filename:	/tmp/tmpdmlykt_3/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:44:10
+Detections: 30/75
+
+Filename:	/tmp/tmpdmlykt_3/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpdmlykt_3/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpdmlykt_3/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpdmlykt_3/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:44:10
+Detections: 27/75
+
+Filename:	/tmp/tmpy24i7_3z/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpy24i7_3z/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:44:10
+Detections: 0/75
+
+Filename:	/tmp/tmpy24i7_3z/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:44:10
+Detections: 30/75
+
+Filename:	/tmp/tmpy24i7_3z/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpy24i7_3z/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpy24i7_3z/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpy24i7_3z/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:44:10
+Detections: 27/75
+
+Filename:	/tmp/tmp6p_6gf9w/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmp6p_6gf9w/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:44:10
+Detections: 0/75
+
+Filename:	/tmp/tmp6p_6gf9w/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:44:10
+Detections: 30/75
+
+Filename:	/tmp/tmp6p_6gf9w/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmp6p_6gf9w/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmp6p_6gf9w/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmp6p_6gf9w/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:44:10
+Detections: 27/75
+
+Filename:	/tmp/tmpgyotwgs3/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpgyotwgs3/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 19:44:10
+Detections: 0/75
+
+Filename:	/tmp/tmpgyotwgs3/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 19:44:10
+Detections: 30/75
+
+Filename:	/tmp/tmpgyotwgs3/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpgyotwgs3/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 19:44:10
+Detections: 32/75
+
+Filename:	/tmp/tmpgyotwgs3/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 19:44:10
+Detections: 31/75
+
+Filename:	/tmp/tmpgyotwgs3/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 19:44:10
+Detections: 27/75
+
+Filename:	/tmp/tmp5r8a9bs9/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 20:00:06
+Detections: 30/75
+
+Filename:	/tmp/tmp5r8a9bs9/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 20:00:05
+Detections: 0/75
+
+Filename:	/tmp/tmp5r8a9bs9/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 20:00:06
+Detections: 31/75
+
+Filename:	/tmp/tmp5r8a9bs9/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 20:00:05
+Detections: 29/75
+
+Filename:	/tmp/tmp5r8a9bs9/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 20:00:05
+Detections: 35/75
+
+Filename:	/tmp/tmp5r8a9bs9/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 20:00:05
+Detections: 29/75
+
+Filename:	/tmp/tmp5r8a9bs9/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 20:00:06
+Detections: 27/75
+
+Filename:	/tmp/tmpadsr59t1/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 20:00:06
+Detections: 30/75
+
+Filename:	/tmp/tmpadsr59t1/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 20:00:05
+Detections: 0/75
+
+Filename:	/tmp/tmpadsr59t1/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 20:00:06
+Detections: 31/75
+
+Filename:	/tmp/tmpadsr59t1/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 20:00:05
+Detections: 29/75
+
+Filename:	/tmp/tmpadsr59t1/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 20:00:05
+Detections: 35/75
+
+Filename:	/tmp/tmpadsr59t1/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 20:00:05
+Detections: 29/75
+
+Filename:	/tmp/tmpadsr59t1/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 20:00:06
+Detections: 27/75
+
+Filename:	../Yara-Module/revshell.yara
+SHA256 Hash:	6bd5aa58333b5467596010eb65bc3f95a9b4e41f17b22e0c8b61faa33cac8f4d
+Date Scanned:	2023-07-20 20:09:35
+Detections: 13/75
+
+Filename:	../Yara-Module/revshell1.yar
+SHA256 Hash:	60281fdee79f6c98cf7e7f8a4d646e8f20b1e08537b823756344a18ca0686315
+Date Scanned:	2023-07-20 20:09:34
+Detections: 0/75
+
+Filename:	../Yara-Module/rules/MALW_AZORULT.yar
+SHA256 Hash:	e86e0a5b6a71bd0f8f9ba404b93dde97ebd41b64a5f6b6194e5690cc3d363670
+Date Scanned:	2023-07-20 20:09:34
+Detections: 0/75
+
+Filename:	/tmp/tmpct8fk3_r/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 22:22:08
+Detections: 32/75
+
+Filename:	/tmp/tmpct8fk3_r/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 22:22:08
+Detections: 0/75
+
+Filename:	/tmp/tmpct8fk3_r/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 22:22:08
+Detections: 30/75
+
+Filename:	/tmp/tmpct8fk3_r/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:22:08
+Detections: 31/75
+
+Filename:	/tmp/tmpct8fk3_r/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 22:22:08
+Detections: 35/75
+
+Filename:	/tmp/tmpct8fk3_r/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:22:08
+Detections: 31/75
+
+Filename:	/tmp/tmpct8fk3_r/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 22:22:08
+Detections: 26/75
+
+Filename:	/tmp/tmpnen2t5rx/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 22:22:08
+Detections: 32/75
+
+Filename:	/tmp/tmpnen2t5rx/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 22:22:08
+Detections: 0/75
+
+Filename:	/tmp/tmpnen2t5rx/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 22:22:08
+Detections: 30/75
+
+Filename:	/tmp/tmpnen2t5rx/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:22:08
+Detections: 31/75
+
+Filename:	/tmp/tmpnen2t5rx/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 22:22:08
+Detections: 35/75
+
+Filename:	/tmp/tmpnen2t5rx/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:22:08
+Detections: 31/75
+
+Filename:	/tmp/tmpnen2t5rx/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 22:22:08
+Detections: 26/75
+
+Filename:	/tmp/tmp4_i8y14m/test-malicious-1.0.0.tgz
+SHA256 Hash:	35ca2f165f4d3316496238c038c0c07067ca8eb391e41154b4eceab668a7cadb
+Date Scanned:	2023-07-20 22:37:47
+Detections: 36/75
+
+Filename:	/tmp/tmp4_i8y14m/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 22:37:47
+Detections: 32/75
+
+Filename:	/tmp/tmp4_i8y14m/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 22:37:47
+Detections: 0/75
+
+Filename:	/tmp/tmp4_i8y14m/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmp4_i8y14m/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmp4_i8y14m/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 22:37:47
+Detections: 35/75
+
+Filename:	/tmp/tmp4_i8y14m/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmp4_i8y14m/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 22:37:47
+Detections: 26/75
+
+Filename:	/tmp/tmp8fnnkixz/test-malicious-1.0.0.tgz
+SHA256 Hash:	35ca2f165f4d3316496238c038c0c07067ca8eb391e41154b4eceab668a7cadb
+Date Scanned:	2023-07-20 22:37:47
+Detections: 36/75
+
+Filename:	/tmp/tmp8fnnkixz/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 22:37:47
+Detections: 32/75
+
+Filename:	/tmp/tmp8fnnkixz/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 22:37:47
+Detections: 0/75
+
+Filename:	/tmp/tmp8fnnkixz/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmp8fnnkixz/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmp8fnnkixz/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 22:37:47
+Detections: 35/75
+
+Filename:	/tmp/tmp8fnnkixz/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmp8fnnkixz/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 22:37:47
+Detections: 26/75
+
+Filename:	/tmp/tmpbb_2u7xb/test-malicious-1.0.0.tgz
+SHA256 Hash:	35ca2f165f4d3316496238c038c0c07067ca8eb391e41154b4eceab668a7cadb
+Date Scanned:	2023-07-20 22:37:47
+Detections: 36/75
+
+Filename:	/tmp/tmpbb_2u7xb/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 22:37:47
+Detections: 32/75
+
+Filename:	/tmp/tmpbb_2u7xb/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 22:37:47
+Detections: 0/75
+
+Filename:	/tmp/tmpbb_2u7xb/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmpbb_2u7xb/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmpbb_2u7xb/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 22:37:47
+Detections: 35/75
+
+Filename:	/tmp/tmpbb_2u7xb/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmpbb_2u7xb/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 22:37:47
+Detections: 26/75
+
+Filename:	/tmp/tmpfwc0o7kj/test-malicious-1.0.0.tgz
+SHA256 Hash:	35ca2f165f4d3316496238c038c0c07067ca8eb391e41154b4eceab668a7cadb
+Date Scanned:	2023-07-20 22:37:47
+Detections: 36/75
+
+Filename:	/tmp/tmpfwc0o7kj/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-20 22:37:47
+Detections: 32/75
+
+Filename:	/tmp/tmpfwc0o7kj/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-20 22:37:47
+Detections: 0/75
+
+Filename:	/tmp/tmpfwc0o7kj/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmpfwc0o7kj/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmpfwc0o7kj/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-20 22:37:47
+Detections: 35/75
+
+Filename:	/tmp/tmpfwc0o7kj/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-20 22:37:47
+Detections: 31/75
+
+Filename:	/tmp/tmpfwc0o7kj/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-20 22:37:47
+Detections: 26/75
+
+Filename:	/tmp/tmprxgcp4mm/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-26 21:27:07
+Detections: 32/75
+
+Filename:	/tmp/tmprxgcp4mm/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-26 21:27:07
+Detections: 0/75
+
+Filename:	/tmp/tmprxgcp4mm/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-26 21:27:08
+Detections: 32/75
+
+Filename:	/tmp/tmprxgcp4mm/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 21:27:07
+Detections: 31/75
+
+Filename:	/tmp/tmprxgcp4mm/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-26 21:27:07
+Detections: 35/75
+
+Filename:	/tmp/tmprxgcp4mm/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 21:27:07
+Detections: 31/75
+
+Filename:	/tmp/tmprxgcp4mm/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-26 21:27:08
+Detections: 28/75
+
+Filename:	/tmp/tmpcfjpp_ub/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-26 21:27:07
+Detections: 32/75
+
+Filename:	/tmp/tmpcfjpp_ub/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-26 21:27:07
+Detections: 0/75
+
+Filename:	/tmp/tmpcfjpp_ub/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-26 21:27:08
+Detections: 32/75
+
+Filename:	/tmp/tmpcfjpp_ub/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 21:27:07
+Detections: 31/75
+
+Filename:	/tmp/tmpcfjpp_ub/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-26 21:27:07
+Detections: 35/75
+
+Filename:	/tmp/tmpcfjpp_ub/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 21:27:07
+Detections: 31/75
+
+Filename:	/tmp/tmpcfjpp_ub/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-26 21:27:08
+Detections: 28/75
+
+Filename:	/tmp/tmpemb8tqpr/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-26 22:22:32
+Detections: 32/75
+
+Filename:	/tmp/tmpemb8tqpr/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-26 22:22:32
+Detections: 0/75
+
+Filename:	/tmp/tmpemb8tqpr/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-26 22:22:32
+Detections: 30/75
+
+Filename:	/tmp/tmpemb8tqpr/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 22:22:32
+Detections: 31/75
+
+Filename:	/tmp/tmpemb8tqpr/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-26 22:22:32
+Detections: 34/75
+
+Filename:	/tmp/tmpemb8tqpr/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 22:22:32
+Detections: 31/75
+
+Filename:	/tmp/tmpemb8tqpr/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-26 22:22:32
+Detections: 28/75
+
+Filename:	/tmp/tmpc5mhdhuy/package/malware5.js
+SHA256 Hash:	ad898ef6465ec79889cdcf4500f33fe8d4b646bf16731d38a86f216de2c5fda9
+Date Scanned:	2023-07-26 22:22:32
+Detections: 32/75
+
+Filename:	/tmp/tmpc5mhdhuy/package/package.json
+SHA256 Hash:	44b18287c55110748b73689cacdbb33704f2603e14671bca6408d90d5c52fb31
+Date Scanned:	2023-07-26 22:22:32
+Detections: 0/75
+
+Filename:	/tmp/tmpc5mhdhuy/package/malware2.js
+SHA256 Hash:	8231e03c37a2433401435be3f3dc7dc82f250ac7272acf9b33577aed92b01756
+Date Scanned:	2023-07-26 22:22:32
+Detections: 30/75
+
+Filename:	/tmp/tmpc5mhdhuy/package/malware1.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 22:22:32
+Detections: 31/75
+
+Filename:	/tmp/tmpc5mhdhuy/package/malware4.js
+SHA256 Hash:	e26982c4bf4a4e6283ff33586d97f777c6aad65f48de0031839d79794add7c8b
+Date Scanned:	2023-07-26 22:22:32
+Detections: 34/75
+
+Filename:	/tmp/tmpc5mhdhuy/package/malware3.js
+SHA256 Hash:	c76e1e5384a08048763fd9ebe9ba7fdb4832c0125c31e0a24c91d8389bda6e34
+Date Scanned:	2023-07-26 22:22:32
+Detections: 31/75
+
+Filename:	/tmp/tmpc5mhdhuy/package/malware6.js
+SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
+Date Scanned:	2023-07-26 22:22:32
+Detections: 28/75
+
