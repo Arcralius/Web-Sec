@@ -630,7 +630,7 @@ if tarball_url:
                     print(f"SCAN RESULTS CAN BE FOUND AT {scan_results_directory}")
                     file_directory = os.path.abspath(__file__)
                     print(
-                        "\nThere are files that are sus, please run 'python/python3 " + file_directory + "/quarantine.py'")
+                        "\nThere are NPM packages that are deemed suspicious, please run 'python/python3 " + file_directory + "/quarantine.py'")
                 else:
                    # Move file into supposed install directory if it is not malicious
                    shutil.move(extracted_dir + "/package", os.getcwd() + "/node_modules/" + package_name) 
