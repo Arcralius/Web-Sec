@@ -9,24 +9,24 @@ import threading
 
 print("----------------VIRUSTOTAL SCAN HAS BEGUN\n")
 
-key = "" # put your virustotal API key in key.txt
+# put your virustotal API keys in key.txt
 with open("key.txt") as f:
-    key = f.read()
+    keys = f.read().split('\n')
 FILESIZE_LIMIT = 33554432 # 32MB
 CUSTOM_FILESIZE_LIMIT = 681574400 #650MB
 mutex = threading.Lock()
 
 # VT limits to files of 32MB or less. Need to request a custom URL to allow for up to 650MB.
-def get_upload_url():
+def get_upload_url(i):
     """ Gets a custom url to POST the file to.
         Returns the upload url on success, None on failure."""
-    x = r.get(r"https://www.virustotal.com/api/v3/files/upload_url", headers = {"x-apikey":key})
+    x = r.get(r"https://www.virustotal.com/api/v3/files/upload_url", headers = {"x-apikey":keys[i]})
     if x.status_code == 200:
         return x.json()['data']
     return None
 
 
-def upload_file(filepath):
+def upload_file(filepath, i):
     """ Uploads a file to VT for analysis.
         Returns the report url on success. Exception on failure"""
     # Read the file
@@ -37,12 +37,12 @@ def upload_file(filepath):
     if len(fb) < FILESIZE_LIMIT:
         url = r"https://www.virustotal.com/api/v3/files"
     elif len(fb) < CUSTOM_FILESIZE_LIMIT:
-        url = get_upload_url()
+        url = get_upload_url(i)
     else:
         raise Exception("File is too big for the API.")
     print("Uploading File to VT api...")
     x = r.post(url,
-               headers = {"x-apikey":key},
+               headers = {"x-apikey":keys[i]},
                files = {"file": ("file.exe", fb)}
                )
     if x.status_code != 200:
@@ -52,11 +52,11 @@ def upload_file(filepath):
     return link
 
 
-def get_report(report_url, filename):
+def get_report(report_url, filename, i):
     """ Continuously query report_url until their analysis is completed.
         Returns a json on success. """
     while True:
-        x = r.get(report_url, headers={'x-apikey':key})
+        x = r.get(report_url, headers={'x-apikey':keys[i]})
         if x.status_code != 200:
             raise Exception(f"{report_url} returned {x.status_code}")
         report_status = x.json()['data']['attributes']['status']
@@ -109,8 +109,8 @@ def main():
 
     args = parser.parse_args()
     if args.filename:
-        #x = get_report(upload_file(args.filename), args.filename)
-        x = get_report(r"https://www.virustotal.com/api/v3/analyses/YmE3MzZlZWEwMDg0MjNiOWYxODEyMTU3YzMxMTk4NWE6MTY4NDgzNDUzMg==", args.filename)
+        x = get_report(upload_file(args.filename, 0), args.filename, 0)
+        #x = get_report(r"https://www.virustotal.com/api/v3/analyses/YmE3MzZlZWEwMDg0MjNiOWYxODEyMTU3YzMxMTk4NWE6MTY4NDgzNDUzMg==", args.filename)
         print_stats(x)
         if args.json:
             print_json(x, args.json)
@@ -127,14 +127,15 @@ def main():
         results = []
         with Pool(10)as pool:
             print("UPLOADING SAMPLES")
-            for file in tqdm(files):
-                results.append((pool.apply_async(upload_file, args=(file,),), file))
+            for i,file in enumerate(tqdm(files)):
+                i %= len(keys)
+                results.append((pool.apply_async(upload_file, args=(file,i,),), file, i))
                 #results.append(pool.apply_async(get_report, args=(r"https://www.virustotal.com/api/v3/analyses/YmE3MzZlZWEwMDg0MjNiOWYxODEyMTU3YzMxMTk4NWE6MTY4NDgzNDUzMg==",)))
             pool.close()
             pool.join()
             print("GETTING RESPONSES")
-            for res, file in tqdm(results):
-                report = get_report(res.get(), file)
+            for res, file, i in tqdm(results):
+                report = get_report(res.get(), file, i)
                 if args.json:
                     print_json(report, args.json)
                     
