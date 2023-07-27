@@ -15,3 +15,6 @@ python3 fetch.py install <package-name>@<package-version>
 
 - If running as a shell script:
 ./npm-wrapper.sh install <package-name>@<package-version>
+
+# To change repository registry:
+- Change the variable constant name: REGISTRY
