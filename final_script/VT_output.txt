@@ -1958,3 +1958,48 @@ SHA256 Hash:	dbc8c9b723200e6796580babc9eb84dd9d49b9c723cb1ebc293776f5252078f3
 Date Scanned:	2023-07-26 22:22:32
 Detections: 28/75
 
+Filename:	/tmp/tmpvlt7t9a7/package/index.html
+SHA256 Hash:	5784a2217c777021499eba0adc750fa2b5022b9d633a7113ae9e27679e34f8e9
+Date Scanned:	2023-07-27 05:37:06
+Detections: 0/75
+
+Filename:	/tmp/tmpvlt7t9a7/package/package.json
+SHA256 Hash:	842314e6c1c92e65a257829b095ec669628647e35815d58df8f3403e9fe9694c
+Date Scanned:	2023-07-27 05:37:06
+Detections: 0/75
+
+Filename:	/tmp/tmpvlt7t9a7/package/REAMME.md
+SHA256 Hash:	c08162b016bab7b59e97638cbfd262438871dba5a4b7d004ca21f10da9e095b4
+Date Scanned:	2023-07-27 05:37:06
+Detections: 0/75
+
+Filename:	/tmp/tmpvlt7t9a7/package/to_google.js
+SHA256 Hash:	a998ecbac30f2080695939913adb9c907727ce75665fab74e9070c79aef2efde
+Date Scanned:	2023-07-27 05:37:06
+Detections: 0/75
+
+Filename:	/tmp/tmpqiq693uc/package/index.html
+SHA256 Hash:	5784a2217c777021499eba0adc750fa2b5022b9d633a7113ae9e27679e34f8e9
+Date Scanned:	2023-07-27 05:37:06
+Detections: 0/75
+
+Filename:	/tmp/tmpqiq693uc/package/package.json
+SHA256 Hash:	cf71a03c27f64679fd0c8dd29e298062e927db674aa36146364ad73dbf63b499
+Date Scanned:	2023-07-27 05:44:01
+Detections: 0/75
+
+Filename:	/tmp/tmpqiq693uc/package/README.md
+SHA256 Hash:	c08162b016bab7b59e97638cbfd262438871dba5a4b7d004ca21f10da9e095b4
+Date Scanned:	2023-07-27 05:37:06
+Detections: 0/75
+
+Filename:	/tmp/tmpqiq693uc/package/sus.js
+SHA256 Hash:	6a99721592011c96046d59c3797f8eff977b73e00a69884487c985fc1bbdb564
+Date Scanned:	2023-07-27 05:44:02
+Detections: 31/75
+
+Filename:	/tmp/tmpqiq693uc/package/to_google.js
+SHA256 Hash:	a998ecbac30f2080695939913adb9c907727ce75665fab74e9070c79aef2efde
+Date Scanned:	2023-07-27 05:37:06
+Detections: 0/75
+
